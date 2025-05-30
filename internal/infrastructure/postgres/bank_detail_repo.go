@@ -3,6 +3,7 @@ package postgres
 import (
 	"github.com/LavaJover/shvark-banking-service/internal/domain"
 	"gorm.io/gorm"
+	"github.com/google/uuid"
 )
 
 type DefaultBankDetailRepository struct {
@@ -11,6 +12,7 @@ type DefaultBankDetailRepository struct {
 
 func (r *DefaultBankDetailRepository) CreateBankDetail(bankDetail *domain.BankDetail) (string, error) {
 	bankDetailModel := BankDetailModel{
+		ID: uuid.New().String(),
 		TraderID: bankDetail.TraderID,
 		Country: bankDetail.Country,
 		Currency: bankDetail.Currency,

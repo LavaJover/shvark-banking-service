@@ -9,6 +9,7 @@ package bankingpb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -31,6 +32,7 @@ type CreateBankDetailRequest struct {
 	BankName      string                 `protobuf:"bytes,6,opt,name=bank_name,json=bankName,proto3" json:"bank_name,omitempty"`
 	PaymentSystem string                 `protobuf:"bytes,7,opt,name=payment_system,json=paymentSystem,proto3" json:"payment_system,omitempty"`
 	Enabled       bool                   `protobuf:"varint,8,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	Delay         *durationpb.Duration   `protobuf:"bytes,9,opt,name=delay,proto3" json:"delay,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -121,9 +123,17 @@ func (x *CreateBankDetailRequest) GetEnabled() bool {
 	return false
 }
 
+func (x *CreateBankDetailRequest) GetDelay() *durationpb.Duration {
+	if x != nil {
+		return x.Delay
+	}
+	return nil
+}
+
 type CreateBankDetailResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	BankDetailId  string                 `protobuf:"bytes,1,opt,name=bank_detail_id,json=bankDetailId,proto3" json:"bank_detail_id,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -158,6 +168,13 @@ func (*CreateBankDetailResponse) Descriptor() ([]byte, []int) {
 	return file_banking_proto_rawDescGZIP(), []int{1}
 }
 
+func (x *CreateBankDetailResponse) GetBankDetailId() string {
+	if x != nil {
+		return x.BankDetailId
+	}
+	return ""
+}
+
 func (x *CreateBankDetailResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
@@ -169,7 +186,7 @@ var File_banking_proto protoreflect.FileDescriptor
 
 const file_banking_proto_rawDesc = "" +
 	"\n" +
-	"\rbanking.proto\x12\abanking\"\x88\x02\n" +
+	"\rbanking.proto\x12\abanking\x1a\x1egoogle/protobuf/duration.proto\"\xb9\x02\n" +
 	"\x17CreateBankDetailRequest\x12\x1b\n" +
 	"\ttrader_id\x18\x01 \x01(\tR\btraderId\x12\x1a\n" +
 	"\bcurrency\x18\x02 \x01(\tR\bcurrency\x12\x18\n" +
@@ -180,9 +197,11 @@ const file_banking_proto_rawDesc = "" +
 	"max_amount\x18\x05 \x01(\x01R\tmaxAmount\x12\x1b\n" +
 	"\tbank_name\x18\x06 \x01(\tR\bbankName\x12%\n" +
 	"\x0epayment_system\x18\a \x01(\tR\rpaymentSystem\x12\x18\n" +
-	"\aenabled\x18\b \x01(\bR\aenabled\"4\n" +
-	"\x18CreateBankDetailResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2i\n" +
+	"\aenabled\x18\b \x01(\bR\aenabled\x12/\n" +
+	"\x05delay\x18\t \x01(\v2\x19.google.protobuf.DurationR\x05delay\"Z\n" +
+	"\x18CreateBankDetailResponse\x12$\n" +
+	"\x0ebank_detail_id\x18\x01 \x01(\tR\fbankDetailId\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2i\n" +
 	"\x0eBankingService\x12W\n" +
 	"\x10CreateBankDetail\x12 .banking.CreateBankDetailRequest\x1a!.banking.CreateBankDetailResponseB7Z5github.com/LavaJover/shvark-banking-service;bankingpbb\x06proto3"
 
@@ -202,15 +221,17 @@ var file_banking_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_banking_proto_goTypes = []any{
 	(*CreateBankDetailRequest)(nil),  // 0: banking.CreateBankDetailRequest
 	(*CreateBankDetailResponse)(nil), // 1: banking.CreateBankDetailResponse
+	(*durationpb.Duration)(nil),      // 2: google.protobuf.Duration
 }
 var file_banking_proto_depIdxs = []int32{
-	0, // 0: banking.BankingService.CreateBankDetail:input_type -> banking.CreateBankDetailRequest
-	1, // 1: banking.BankingService.CreateBankDetail:output_type -> banking.CreateBankDetailResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	2, // 0: banking.CreateBankDetailRequest.delay:type_name -> google.protobuf.Duration
+	0, // 1: banking.BankingService.CreateBankDetail:input_type -> banking.CreateBankDetailRequest
+	1, // 2: banking.BankingService.CreateBankDetail:output_type -> banking.CreateBankDetailResponse
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_banking_proto_init() }

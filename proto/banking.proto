@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package banking;
 
+import "google/protobuf/duration.proto";
+
 option go_package = "github.com/LavaJover/shvark-banking-service;bankingpb";
 
 service BankingService {
@@ -17,8 +19,10 @@ message CreateBankDetailRequest {
     string bank_name = 6;
     string payment_system = 7;
     bool enabled = 8;
+    google.protobuf.Duration delay = 9; 
 }
 
 message CreateBankDetailResponse {
-    string message = 1;
+    string bank_detail_id = 1;
+    string message = 2;
 }
