@@ -5,4 +5,5 @@ type BankDetailRepository interface {
 	DeleteBankDetail(bankDetailID string) (*BankDetail, error)
 	UpdateBankDetail(bankDetail *BankDetail) error
 	GetBankDetailByID(bankDetailID string) (*BankDetail, error)
+	GetBankDetailsByTraderID(traderID string) ([]*BankDetail, error)
 }

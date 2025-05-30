@@ -83,7 +83,7 @@ func (h *BankDetailHandler) UpdateBankDetail(ctx context.Context, r *bankingpb.U
 	return &bankingpb.UpdateBankDetailResponse{}, nil
 }
 
-func (h *BankDetailHandler) DeletebankDetail(ctx context.Context, r *bankingpb.DeleteBankDetailRequest) (*bankingpb.DeleteBankDetailResponse, error) {
+func (h *BankDetailHandler) DeleteBankDetail(ctx context.Context, r *bankingpb.DeleteBankDetailRequest) (*bankingpb.DeleteBankDetailResponse, error) {
 	bankDetailID := r.BankDetailId
 	response, err := h.uc.DeleteBankDetail(bankDetailID)
 	if err != nil {
@@ -103,5 +103,34 @@ func (h *BankDetailHandler) DeletebankDetail(ctx context.Context, r *bankingpb.D
 			Enabled: response.Enabled,
 			Delay: durationpb.New(response.Delay),
 		},
+	}, nil
+}
+
+func (h *BankDetailHandler) GetBankDetailsByTraderID(ctx context.Context, r *bankingpb.GetBankDetailsByTraderIDRequest) (*bankingpb.GetBankDetailsByTraderIDResponse, error) {
+	traderID := r.TraderId
+	bankDetails, err := h.uc.GetBankDetailsByTraderID(traderID)
+	if err != nil {
+		return nil, err
+	}
+
+	bankDetailsResponse := make([]*bankingpb.BankDetail, len(bankDetails))
+
+	for i, bankDetail := range bankDetails {
+		bankDetailsResponse[i] = &bankingpb.BankDetail{
+			BankDetailId: bankDetail.ID,
+			TraderId: bankDetail.TraderID,
+			Currency: bankDetail.Currency,
+			Country: bankDetail.Country,
+			MinAmount: float64(bankDetail.MinAmount),
+			MaxAmount: float64(bankDetail.MaxAmount),
+			BankName: bankDetail.BankName,
+			PaymentSystem: bankDetail.PaymentSystem,
+			Enabled: bankDetail.Enabled,
+			Delay: durationpb.New(bankDetail.Delay),
+		}
+	}
+
+	return &bankingpb.GetBankDetailsByTraderIDResponse{
+		BankDetails: bankDetailsResponse,
 	}, nil
 }

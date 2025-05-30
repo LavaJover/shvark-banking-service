@@ -10,7 +10,8 @@ service BankingService {
     rpc CreateBankDetail(CreateBankDetailRequest) returns (CreateBankDetailResponse);
     rpc GetBankDetailByID(GetBankDetailByIDRequest) returns (GetBankDetailByIDResponse);
     rpc UpdateBankDetail(UpdateBankDetailRequest) returns (UpdateBankDetailResponse);
-    rpc DeletebankDetail(DeleteBankDetailRequest) returns (DeleteBankDetailResponse);
+    rpc DeleteBankDetail(DeleteBankDetailRequest) returns (DeleteBankDetailResponse);
+    rpc GetBankDetailsByTraderID(GetBankDetailsByTraderIDRequest) returns (GetBankDetailsByTraderIDResponse);
 }
 
 message BankDetail {
@@ -63,4 +64,12 @@ message DeleteBankDetailRequest {
 
 message DeleteBankDetailResponse {
     BankDetail bank_detail = 1;
+}
+
+message GetBankDetailsByTraderIDRequest {
+    string trader_id = 1;
+}
+
+message GetBankDetailsByTraderIDResponse {
+    repeated BankDetail bank_details = 1;
 }

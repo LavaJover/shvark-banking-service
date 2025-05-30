@@ -108,3 +108,29 @@ func (r *DefaultBankDetailRepository) GetBankDetailByID(bankDetailID string) (*d
 		Enabled: bankDetailModel.Enabled,
 	}, nil
 }
+
+func (r *DefaultBankDetailRepository) GetBankDetailsByTraderID(traderID string) ([]*domain.BankDetail, error) {
+	var bankDetailModels []BankDetailModel
+	if err := r.DB.Where("trader_id = ?", traderID).Find(&bankDetailModels).Error; err != nil {
+		return nil, err
+	}
+
+	bankDetailsResponse := make([]*domain.BankDetail, len(bankDetailModels))
+
+	for i, bankDetailModel := range bankDetailModels {
+		bankDetailsResponse[i] = &domain.BankDetail{
+			ID: bankDetailModel.ID,
+			TraderID: bankDetailModel.TraderID,
+			Country: bankDetailModel.Country,
+			Currency: bankDetailModel.Currency,
+			MinAmount: bankDetailModel.MinAmount,
+			MaxAmount: bankDetailModel.MaxAmount,
+			BankName: bankDetailModel.BankName,
+			PaymentSystem: bankDetailModel.PaymentSystem,
+			Delay: bankDetailModel.Delay,
+			Enabled: bankDetailModel.Enabled,
+		}
+	}
+
+	return bankDetailsResponse, nil
+}

@@ -19,10 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	BankingService_CreateBankDetail_FullMethodName  = "/banking.BankingService/CreateBankDetail"
-	BankingService_GetBankDetailByID_FullMethodName = "/banking.BankingService/GetBankDetailByID"
-	BankingService_UpdateBankDetail_FullMethodName  = "/banking.BankingService/UpdateBankDetail"
-	BankingService_DeletebankDetail_FullMethodName  = "/banking.BankingService/DeletebankDetail"
+	BankingService_CreateBankDetail_FullMethodName         = "/banking.BankingService/CreateBankDetail"
+	BankingService_GetBankDetailByID_FullMethodName        = "/banking.BankingService/GetBankDetailByID"
+	BankingService_UpdateBankDetail_FullMethodName         = "/banking.BankingService/UpdateBankDetail"
+	BankingService_DeleteBankDetail_FullMethodName         = "/banking.BankingService/DeleteBankDetail"
+	BankingService_GetBankDetailsByTraderID_FullMethodName = "/banking.BankingService/GetBankDetailsByTraderID"
 )
 
 // BankingServiceClient is the client API for BankingService service.
@@ -32,7 +33,8 @@ type BankingServiceClient interface {
 	CreateBankDetail(ctx context.Context, in *CreateBankDetailRequest, opts ...grpc.CallOption) (*CreateBankDetailResponse, error)
 	GetBankDetailByID(ctx context.Context, in *GetBankDetailByIDRequest, opts ...grpc.CallOption) (*GetBankDetailByIDResponse, error)
 	UpdateBankDetail(ctx context.Context, in *UpdateBankDetailRequest, opts ...grpc.CallOption) (*UpdateBankDetailResponse, error)
-	DeletebankDetail(ctx context.Context, in *DeleteBankDetailRequest, opts ...grpc.CallOption) (*DeleteBankDetailResponse, error)
+	DeleteBankDetail(ctx context.Context, in *DeleteBankDetailRequest, opts ...grpc.CallOption) (*DeleteBankDetailResponse, error)
+	GetBankDetailsByTraderID(ctx context.Context, in *GetBankDetailsByTraderIDRequest, opts ...grpc.CallOption) (*GetBankDetailsByTraderIDResponse, error)
 }
 
 type bankingServiceClient struct {
@@ -73,10 +75,20 @@ func (c *bankingServiceClient) UpdateBankDetail(ctx context.Context, in *UpdateB
 	return out, nil
 }
 
-func (c *bankingServiceClient) DeletebankDetail(ctx context.Context, in *DeleteBankDetailRequest, opts ...grpc.CallOption) (*DeleteBankDetailResponse, error) {
+func (c *bankingServiceClient) DeleteBankDetail(ctx context.Context, in *DeleteBankDetailRequest, opts ...grpc.CallOption) (*DeleteBankDetailResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteBankDetailResponse)
-	err := c.cc.Invoke(ctx, BankingService_DeletebankDetail_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, BankingService_DeleteBankDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bankingServiceClient) GetBankDetailsByTraderID(ctx context.Context, in *GetBankDetailsByTraderIDRequest, opts ...grpc.CallOption) (*GetBankDetailsByTraderIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBankDetailsByTraderIDResponse)
+	err := c.cc.Invoke(ctx, BankingService_GetBankDetailsByTraderID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +102,8 @@ type BankingServiceServer interface {
 	CreateBankDetail(context.Context, *CreateBankDetailRequest) (*CreateBankDetailResponse, error)
 	GetBankDetailByID(context.Context, *GetBankDetailByIDRequest) (*GetBankDetailByIDResponse, error)
 	UpdateBankDetail(context.Context, *UpdateBankDetailRequest) (*UpdateBankDetailResponse, error)
-	DeletebankDetail(context.Context, *DeleteBankDetailRequest) (*DeleteBankDetailResponse, error)
+	DeleteBankDetail(context.Context, *DeleteBankDetailRequest) (*DeleteBankDetailResponse, error)
+	GetBankDetailsByTraderID(context.Context, *GetBankDetailsByTraderIDRequest) (*GetBankDetailsByTraderIDResponse, error)
 	mustEmbedUnimplementedBankingServiceServer()
 }
 
@@ -110,8 +123,11 @@ func (UnimplementedBankingServiceServer) GetBankDetailByID(context.Context, *Get
 func (UnimplementedBankingServiceServer) UpdateBankDetail(context.Context, *UpdateBankDetailRequest) (*UpdateBankDetailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBankDetail not implemented")
 }
-func (UnimplementedBankingServiceServer) DeletebankDetail(context.Context, *DeleteBankDetailRequest) (*DeleteBankDetailResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeletebankDetail not implemented")
+func (UnimplementedBankingServiceServer) DeleteBankDetail(context.Context, *DeleteBankDetailRequest) (*DeleteBankDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBankDetail not implemented")
+}
+func (UnimplementedBankingServiceServer) GetBankDetailsByTraderID(context.Context, *GetBankDetailsByTraderIDRequest) (*GetBankDetailsByTraderIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBankDetailsByTraderID not implemented")
 }
 func (UnimplementedBankingServiceServer) mustEmbedUnimplementedBankingServiceServer() {}
 func (UnimplementedBankingServiceServer) testEmbeddedByValue()                        {}
@@ -188,20 +204,38 @@ func _BankingService_UpdateBankDetail_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BankingService_DeletebankDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _BankingService_DeleteBankDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteBankDetailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BankingServiceServer).DeletebankDetail(ctx, in)
+		return srv.(BankingServiceServer).DeleteBankDetail(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: BankingService_DeletebankDetail_FullMethodName,
+		FullMethod: BankingService_DeleteBankDetail_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BankingServiceServer).DeletebankDetail(ctx, req.(*DeleteBankDetailRequest))
+		return srv.(BankingServiceServer).DeleteBankDetail(ctx, req.(*DeleteBankDetailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BankingService_GetBankDetailsByTraderID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBankDetailsByTraderIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BankingServiceServer).GetBankDetailsByTraderID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BankingService_GetBankDetailsByTraderID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BankingServiceServer).GetBankDetailsByTraderID(ctx, req.(*GetBankDetailsByTraderIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -226,8 +260,12 @@ var BankingService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _BankingService_UpdateBankDetail_Handler,
 		},
 		{
-			MethodName: "DeletebankDetail",
-			Handler:    _BankingService_DeletebankDetail_Handler,
+			MethodName: "DeleteBankDetail",
+			Handler:    _BankingService_DeleteBankDetail_Handler,
+		},
+		{
+			MethodName: "GetBankDetailsByTraderID",
+			Handler:    _BankingService_GetBankDetailsByTraderID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
