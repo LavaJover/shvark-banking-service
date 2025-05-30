@@ -1,4 +1,4 @@
-package grpc
+package grpcapi
 
 import (
 	"context"
@@ -75,7 +75,7 @@ func (h *BankDetailHandler) UpdateBankDetail(ctx context.Context, r *bankingpb.U
 		Enabled: r.BankDetail.Enabled,
 	}
 
-	err := h.uc.UpdatebankDetail(&bankDetailUpdate)
+	err := h.uc.UpdateBankDetail(&bankDetailUpdate)
 	if err != nil {
 		return nil, err
 	}

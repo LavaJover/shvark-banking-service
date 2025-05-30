@@ -10,6 +10,10 @@ type DefaultBankDetailRepository struct {
 	DB *gorm.DB
 }
 
+func NewDefaultbankDetailRepository(db *gorm.DB) (*DefaultBankDetailRepository, error) {
+	return &DefaultBankDetailRepository{DB: db}, nil
+}
+
 func (r *DefaultBankDetailRepository) CreateBankDetail(bankDetail *domain.BankDetail) (string, error) {
 	bankDetailModel := BankDetailModel{
 		ID: uuid.New().String(),
@@ -62,6 +66,7 @@ func (r *DefaultBankDetailRepository) DeleteBankDetail(bankDetailID string) (*do
 
 func (r *DefaultBankDetailRepository) UpdateBankDetail(bankDetail *domain.BankDetail) error {
 	modelToUpdate := BankDetailModel{
+		ID: bankDetail.ID,
 		TraderID: bankDetail.TraderID,
 		Country: bankDetail.Country,
 		Currency: bankDetail.Currency,
