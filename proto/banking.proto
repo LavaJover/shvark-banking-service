@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package banking;
+
+option go_package = "github.com/LavaJover/shvark-banking-service;bankingpb";
+
+service BankingService {
+    rpc CreateBankDetail(CreateBankDetailRequest) returns (CreateBankDetailResponse);
+}
+
+message CreateBankDetailRequest {
+    string trader_id = 1;
+    string currency = 2;
+    string country = 3;
+    double min_amount = 4;
+    double max_amount = 5;
+    string bank_name = 6;
+    string payment_system = 7;
+    bool enabled = 8;
+}
+
+message CreateBankDetailResponse {
+    string message = 1;
+}
