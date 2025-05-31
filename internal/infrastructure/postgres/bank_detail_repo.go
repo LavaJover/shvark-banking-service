@@ -78,7 +78,7 @@ func (r *DefaultBankDetailRepository) UpdateBankDetail(bankDetail *domain.BankDe
 		Enabled: bankDetail.Enabled,
 	}
 
-	if err := r.DB.Save(&modelToUpdate).Error; err != nil {
+	if err := r.DB.Updates(&modelToUpdate).Error; err != nil {
 		return err
 	}
 
