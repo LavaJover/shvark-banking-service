@@ -29,6 +29,7 @@ message BankDetail {
     string card_number = 11;
     string phone = 12;
     string owner = 13;
+    int32  max_orders_simultaneosly = 14;
 }
 
 message CreateBankDetailRequest {
@@ -44,6 +45,7 @@ message CreateBankDetailRequest {
     string card_number = 10;
     string phone = 11;
     string owner = 12;
+    int32  max_orders_simultaneosly = 13;
 }
 
 message CreateBankDetailResponse {

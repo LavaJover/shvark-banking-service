@@ -23,22 +23,23 @@ const (
 )
 
 type BankDetail struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	BankDetailId  string                 `protobuf:"bytes,1,opt,name=bank_detail_id,json=bankDetailId,proto3" json:"bank_detail_id,omitempty"`
-	TraderId      string                 `protobuf:"bytes,2,opt,name=trader_id,json=traderId,proto3" json:"trader_id,omitempty"`
-	Currency      string                 `protobuf:"bytes,3,opt,name=currency,proto3" json:"currency,omitempty"`
-	Country       string                 `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
-	MinAmount     float64                `protobuf:"fixed64,5,opt,name=min_amount,json=minAmount,proto3" json:"min_amount,omitempty"`
-	MaxAmount     float64                `protobuf:"fixed64,6,opt,name=max_amount,json=maxAmount,proto3" json:"max_amount,omitempty"`
-	BankName      string                 `protobuf:"bytes,7,opt,name=bank_name,json=bankName,proto3" json:"bank_name,omitempty"`
-	PaymentSystem string                 `protobuf:"bytes,8,opt,name=payment_system,json=paymentSystem,proto3" json:"payment_system,omitempty"`
-	Enabled       bool                   `protobuf:"varint,9,opt,name=enabled,proto3" json:"enabled,omitempty"`
-	Delay         *durationpb.Duration   `protobuf:"bytes,10,opt,name=delay,proto3" json:"delay,omitempty"`
-	CardNumber    string                 `protobuf:"bytes,11,opt,name=card_number,json=cardNumber,proto3" json:"card_number,omitempty"`
-	Phone         string                 `protobuf:"bytes,12,opt,name=phone,proto3" json:"phone,omitempty"`
-	Owner         string                 `protobuf:"bytes,13,opt,name=owner,proto3" json:"owner,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"open.v1"`
+	BankDetailId           string                 `protobuf:"bytes,1,opt,name=bank_detail_id,json=bankDetailId,proto3" json:"bank_detail_id,omitempty"`
+	TraderId               string                 `protobuf:"bytes,2,opt,name=trader_id,json=traderId,proto3" json:"trader_id,omitempty"`
+	Currency               string                 `protobuf:"bytes,3,opt,name=currency,proto3" json:"currency,omitempty"`
+	Country                string                 `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
+	MinAmount              float64                `protobuf:"fixed64,5,opt,name=min_amount,json=minAmount,proto3" json:"min_amount,omitempty"`
+	MaxAmount              float64                `protobuf:"fixed64,6,opt,name=max_amount,json=maxAmount,proto3" json:"max_amount,omitempty"`
+	BankName               string                 `protobuf:"bytes,7,opt,name=bank_name,json=bankName,proto3" json:"bank_name,omitempty"`
+	PaymentSystem          string                 `protobuf:"bytes,8,opt,name=payment_system,json=paymentSystem,proto3" json:"payment_system,omitempty"`
+	Enabled                bool                   `protobuf:"varint,9,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	Delay                  *durationpb.Duration   `protobuf:"bytes,10,opt,name=delay,proto3" json:"delay,omitempty"`
+	CardNumber             string                 `protobuf:"bytes,11,opt,name=card_number,json=cardNumber,proto3" json:"card_number,omitempty"`
+	Phone                  string                 `protobuf:"bytes,12,opt,name=phone,proto3" json:"phone,omitempty"`
+	Owner                  string                 `protobuf:"bytes,13,opt,name=owner,proto3" json:"owner,omitempty"`
+	MaxOrdersSimultaneosly int32                  `protobuf:"varint,14,opt,name=max_orders_simultaneosly,json=maxOrdersSimultaneosly,proto3" json:"max_orders_simultaneosly,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *BankDetail) Reset() {
@@ -162,22 +163,30 @@ func (x *BankDetail) GetOwner() string {
 	return ""
 }
 
+func (x *BankDetail) GetMaxOrdersSimultaneosly() int32 {
+	if x != nil {
+		return x.MaxOrdersSimultaneosly
+	}
+	return 0
+}
+
 type CreateBankDetailRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TraderId      string                 `protobuf:"bytes,1,opt,name=trader_id,json=traderId,proto3" json:"trader_id,omitempty"`
-	Currency      string                 `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency,omitempty"`
-	Country       string                 `protobuf:"bytes,3,opt,name=country,proto3" json:"country,omitempty"`
-	MinAmount     float64                `protobuf:"fixed64,4,opt,name=min_amount,json=minAmount,proto3" json:"min_amount,omitempty"`
-	MaxAmount     float64                `protobuf:"fixed64,5,opt,name=max_amount,json=maxAmount,proto3" json:"max_amount,omitempty"`
-	BankName      string                 `protobuf:"bytes,6,opt,name=bank_name,json=bankName,proto3" json:"bank_name,omitempty"`
-	PaymentSystem string                 `protobuf:"bytes,7,opt,name=payment_system,json=paymentSystem,proto3" json:"payment_system,omitempty"`
-	Enabled       bool                   `protobuf:"varint,8,opt,name=enabled,proto3" json:"enabled,omitempty"`
-	Delay         *durationpb.Duration   `protobuf:"bytes,9,opt,name=delay,proto3" json:"delay,omitempty"`
-	CardNumber    string                 `protobuf:"bytes,10,opt,name=card_number,json=cardNumber,proto3" json:"card_number,omitempty"`
-	Phone         string                 `protobuf:"bytes,11,opt,name=phone,proto3" json:"phone,omitempty"`
-	Owner         string                 `protobuf:"bytes,12,opt,name=owner,proto3" json:"owner,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"open.v1"`
+	TraderId               string                 `protobuf:"bytes,1,opt,name=trader_id,json=traderId,proto3" json:"trader_id,omitempty"`
+	Currency               string                 `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency,omitempty"`
+	Country                string                 `protobuf:"bytes,3,opt,name=country,proto3" json:"country,omitempty"`
+	MinAmount              float64                `protobuf:"fixed64,4,opt,name=min_amount,json=minAmount,proto3" json:"min_amount,omitempty"`
+	MaxAmount              float64                `protobuf:"fixed64,5,opt,name=max_amount,json=maxAmount,proto3" json:"max_amount,omitempty"`
+	BankName               string                 `protobuf:"bytes,6,opt,name=bank_name,json=bankName,proto3" json:"bank_name,omitempty"`
+	PaymentSystem          string                 `protobuf:"bytes,7,opt,name=payment_system,json=paymentSystem,proto3" json:"payment_system,omitempty"`
+	Enabled                bool                   `protobuf:"varint,8,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	Delay                  *durationpb.Duration   `protobuf:"bytes,9,opt,name=delay,proto3" json:"delay,omitempty"`
+	CardNumber             string                 `protobuf:"bytes,10,opt,name=card_number,json=cardNumber,proto3" json:"card_number,omitempty"`
+	Phone                  string                 `protobuf:"bytes,11,opt,name=phone,proto3" json:"phone,omitempty"`
+	Owner                  string                 `protobuf:"bytes,12,opt,name=owner,proto3" json:"owner,omitempty"`
+	MaxOrdersSimultaneosly int32                  `protobuf:"varint,13,opt,name=max_orders_simultaneosly,json=maxOrdersSimultaneosly,proto3" json:"max_orders_simultaneosly,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *CreateBankDetailRequest) Reset() {
@@ -292,6 +301,13 @@ func (x *CreateBankDetailRequest) GetOwner() string {
 		return x.Owner
 	}
 	return ""
+}
+
+func (x *CreateBankDetailRequest) GetMaxOrdersSimultaneosly() int32 {
+	if x != nil {
+		return x.MaxOrdersSimultaneosly
+	}
+	return 0
 }
 
 type CreateBankDetailResponse struct {
@@ -806,7 +822,7 @@ var File_banking_proto protoreflect.FileDescriptor
 
 const file_banking_proto_rawDesc = "" +
 	"\n" +
-	"\rbanking.proto\x12\abanking\x1a\x1egoogle/protobuf/duration.proto\"\x9f\x03\n" +
+	"\rbanking.proto\x12\abanking\x1a\x1egoogle/protobuf/duration.proto\"\xd9\x03\n" +
 	"\n" +
 	"BankDetail\x12$\n" +
 	"\x0ebank_detail_id\x18\x01 \x01(\tR\fbankDetailId\x12\x1b\n" +
@@ -825,7 +841,8 @@ const file_banking_proto_rawDesc = "" +
 	"\vcard_number\x18\v \x01(\tR\n" +
 	"cardNumber\x12\x14\n" +
 	"\x05phone\x18\f \x01(\tR\x05phone\x12\x14\n" +
-	"\x05owner\x18\r \x01(\tR\x05owner\"\x86\x03\n" +
+	"\x05owner\x18\r \x01(\tR\x05owner\x128\n" +
+	"\x18max_orders_simultaneosly\x18\x0e \x01(\x05R\x16maxOrdersSimultaneosly\"\xc0\x03\n" +
 	"\x17CreateBankDetailRequest\x12\x1b\n" +
 	"\ttrader_id\x18\x01 \x01(\tR\btraderId\x12\x1a\n" +
 	"\bcurrency\x18\x02 \x01(\tR\bcurrency\x12\x18\n" +
@@ -842,7 +859,8 @@ const file_banking_proto_rawDesc = "" +
 	" \x01(\tR\n" +
 	"cardNumber\x12\x14\n" +
 	"\x05phone\x18\v \x01(\tR\x05phone\x12\x14\n" +
-	"\x05owner\x18\f \x01(\tR\x05owner\"Z\n" +
+	"\x05owner\x18\f \x01(\tR\x05owner\x128\n" +
+	"\x18max_orders_simultaneosly\x18\r \x01(\x05R\x16maxOrdersSimultaneosly\"Z\n" +
 	"\x18CreateBankDetailResponse\x12$\n" +
 	"\x0ebank_detail_id\x18\x01 \x01(\tR\fbankDetailId\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"@\n" +

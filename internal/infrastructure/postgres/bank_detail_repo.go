@@ -31,6 +31,7 @@ func (r *DefaultBankDetailRepository) CreateBankDetail(bankDetail *domain.BankDe
 		CardNumber: bankDetail.CardNumber,
 		Phone: bankDetail.Phone,
 		Owner: bankDetail.Owner,
+		MaxOrdersSimultaneosly: bankDetail.MaxOrdersSimultaneosly,
 	}
 	if err := r.DB.Create(&bankDetailModel).Error; err != nil {
 		return "", err
@@ -68,6 +69,7 @@ func (r *DefaultBankDetailRepository) DeleteBankDetail(bankDetailID string) (*do
 		CardNumber: bankDetailModel.CardNumber,
 		Phone: bankDetailModel.Phone,
 		Owner: bankDetailModel.Owner,
+		MaxOrdersSimultaneosly: bankDetailModel.MaxOrdersSimultaneosly,
 	}, nil
 
 }
@@ -87,6 +89,7 @@ func (r *DefaultBankDetailRepository) UpdateBankDetail(bankDetail *domain.BankDe
 		CardNumber: bankDetail.CardNumber,
 		Phone: bankDetail.Phone,
 		Owner: bankDetail.Owner,
+		MaxOrdersSimultaneosly: bankDetail.MaxOrdersSimultaneosly,
 	}
 
 	if err := r.DB.Updates(&modelToUpdate).Error; err != nil {
@@ -120,6 +123,7 @@ func (r *DefaultBankDetailRepository) GetBankDetailByID(bankDetailID string) (*d
 		CardNumber: bankDetailModel.CardNumber,
 		Phone: bankDetailModel.Phone,
 		Owner: bankDetailModel.Owner,
+		MaxOrdersSimultaneosly: bankDetailModel.MaxOrdersSimultaneosly,
 	}, nil
 }
 
@@ -146,6 +150,7 @@ func (r *DefaultBankDetailRepository) GetBankDetailsByTraderID(traderID string) 
 			CardNumber: bankDetailModel.CardNumber,
 			Phone: bankDetailModel.Phone,
 			Owner: bankDetailModel.Owner,
+			MaxOrdersSimultaneosly: bankDetailModel.MaxOrdersSimultaneosly,
 		}
 	}
 
@@ -181,6 +186,7 @@ func (r *DefaultBankDetailRepository) GetEligibleBankDetails(query *domain.BankD
 			CardNumber: bankDetailModel.CardNumber,
 			Phone: bankDetailModel.Phone,
 			Owner: bankDetailModel.Owner,
+			MaxOrdersSimultaneosly: bankDetailModel.MaxOrdersSimultaneosly,
 		}
 	}
 

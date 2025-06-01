@@ -31,6 +31,7 @@ func (h *BankDetailHandler) CreateBankDetail(ctx context.Context, r *bankingpb.C
 		CardNumber: r.CardNumber,
 		Phone: r.Phone,
 		Owner: r.Owner,
+		MaxOrdersSimultaneosly: r.MaxOrdersSimultaneosly,
 	}
 	bankDetailID, err := h.uc.CreateBankDetail(&bankDetail)
 	if err != nil {
@@ -64,6 +65,7 @@ func (h *BankDetailHandler) GetBankDetailByID(ctx context.Context, r *bankingpb.
 			CardNumber: response.CardNumber,
 			Phone: response.Phone,
 			Owner: response.Owner,
+			MaxOrdersSimultaneosly: response.MaxOrdersSimultaneosly,
 		},
 	}, nil
 }
@@ -83,6 +85,7 @@ func (h *BankDetailHandler) UpdateBankDetail(ctx context.Context, r *bankingpb.U
 		CardNumber: r.BankDetail.CardNumber,
 		Phone: r.BankDetail.Phone,
 		Owner: r.BankDetail.Owner,
+		MaxOrdersSimultaneosly: r.BankDetail.MaxOrdersSimultaneosly,
 	}
 
 	err := h.uc.UpdateBankDetail(&bankDetailUpdate)
@@ -115,6 +118,7 @@ func (h *BankDetailHandler) DeleteBankDetail(ctx context.Context, r *bankingpb.D
 			CardNumber: response.CardNumber,
 			Phone: response.Phone,
 			Owner: response.Owner,
+			MaxOrdersSimultaneosly: response.MaxOrdersSimultaneosly,
 		},
 	}, nil
 }
@@ -143,6 +147,7 @@ func (h *BankDetailHandler) GetBankDetailsByTraderID(ctx context.Context, r *ban
 			CardNumber: bankDetail.CardNumber,
 			Phone: bankDetail.Phone,
 			Owner: bankDetail.Owner,
+			MaxOrdersSimultaneosly: bankDetail.MaxOrdersSimultaneosly,
 		}
 	}
 
@@ -181,6 +186,7 @@ func (h *BankDetailHandler) GetEligibleBankDetails(ctx context.Context, r *banki
 			CardNumber: bankDetail.CardNumber,
 			Phone: bankDetail.Phone,
 			Owner: bankDetail.Owner,
+			MaxOrdersSimultaneosly: bankDetail.MaxOrdersSimultaneosly,
 		}
 	}
 
