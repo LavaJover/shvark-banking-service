@@ -142,7 +142,7 @@ func (r *DefaultBankDetailRepository) GetEligibleBankDetails(query *domain.BankD
 	err := r.DB.
 		Where("enabled = ?", true).
 		Where("country = ?", query.Country).
-		Where("min_amount <= ? AND max_amount >= ?", query.Amount).
+		Where("min_amount <= ? AND max_amount >= ?", query.Amount, query.Amount).
 		Where("payment_system = ?", query.PaymentSystem).
 		Find(&bankDetailModels).Error
 	
