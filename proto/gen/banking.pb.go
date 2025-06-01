@@ -38,6 +38,8 @@ type BankDetail struct {
 	Phone                  string                 `protobuf:"bytes,12,opt,name=phone,proto3" json:"phone,omitempty"`
 	Owner                  string                 `protobuf:"bytes,13,opt,name=owner,proto3" json:"owner,omitempty"`
 	MaxOrdersSimultaneosly int32                  `protobuf:"varint,14,opt,name=max_orders_simultaneosly,json=maxOrdersSimultaneosly,proto3" json:"max_orders_simultaneosly,omitempty"`
+	MaxAmountDay           float64                `protobuf:"fixed64,15,opt,name=max_amount_day,json=maxAmountDay,proto3" json:"max_amount_day,omitempty"`
+	MaxAmountMonth         float64                `protobuf:"fixed64,16,opt,name=max_amount_month,json=maxAmountMonth,proto3" json:"max_amount_month,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -170,6 +172,20 @@ func (x *BankDetail) GetMaxOrdersSimultaneosly() int32 {
 	return 0
 }
 
+func (x *BankDetail) GetMaxAmountDay() float64 {
+	if x != nil {
+		return x.MaxAmountDay
+	}
+	return 0
+}
+
+func (x *BankDetail) GetMaxAmountMonth() float64 {
+	if x != nil {
+		return x.MaxAmountMonth
+	}
+	return 0
+}
+
 type CreateBankDetailRequest struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
 	TraderId               string                 `protobuf:"bytes,1,opt,name=trader_id,json=traderId,proto3" json:"trader_id,omitempty"`
@@ -185,6 +201,8 @@ type CreateBankDetailRequest struct {
 	Phone                  string                 `protobuf:"bytes,11,opt,name=phone,proto3" json:"phone,omitempty"`
 	Owner                  string                 `protobuf:"bytes,12,opt,name=owner,proto3" json:"owner,omitempty"`
 	MaxOrdersSimultaneosly int32                  `protobuf:"varint,13,opt,name=max_orders_simultaneosly,json=maxOrdersSimultaneosly,proto3" json:"max_orders_simultaneosly,omitempty"`
+	MaxAmountDay           float64                `protobuf:"fixed64,14,opt,name=max_amount_day,json=maxAmountDay,proto3" json:"max_amount_day,omitempty"`
+	MaxAmountMonth         float64                `protobuf:"fixed64,15,opt,name=max_amount_month,json=maxAmountMonth,proto3" json:"max_amount_month,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -306,6 +324,20 @@ func (x *CreateBankDetailRequest) GetOwner() string {
 func (x *CreateBankDetailRequest) GetMaxOrdersSimultaneosly() int32 {
 	if x != nil {
 		return x.MaxOrdersSimultaneosly
+	}
+	return 0
+}
+
+func (x *CreateBankDetailRequest) GetMaxAmountDay() float64 {
+	if x != nil {
+		return x.MaxAmountDay
+	}
+	return 0
+}
+
+func (x *CreateBankDetailRequest) GetMaxAmountMonth() float64 {
+	if x != nil {
+		return x.MaxAmountMonth
 	}
 	return 0
 }
@@ -822,7 +854,7 @@ var File_banking_proto protoreflect.FileDescriptor
 
 const file_banking_proto_rawDesc = "" +
 	"\n" +
-	"\rbanking.proto\x12\abanking\x1a\x1egoogle/protobuf/duration.proto\"\xd9\x03\n" +
+	"\rbanking.proto\x12\abanking\x1a\x1egoogle/protobuf/duration.proto\"\xa9\x04\n" +
 	"\n" +
 	"BankDetail\x12$\n" +
 	"\x0ebank_detail_id\x18\x01 \x01(\tR\fbankDetailId\x12\x1b\n" +
@@ -842,7 +874,9 @@ const file_banking_proto_rawDesc = "" +
 	"cardNumber\x12\x14\n" +
 	"\x05phone\x18\f \x01(\tR\x05phone\x12\x14\n" +
 	"\x05owner\x18\r \x01(\tR\x05owner\x128\n" +
-	"\x18max_orders_simultaneosly\x18\x0e \x01(\x05R\x16maxOrdersSimultaneosly\"\xc0\x03\n" +
+	"\x18max_orders_simultaneosly\x18\x0e \x01(\x05R\x16maxOrdersSimultaneosly\x12$\n" +
+	"\x0emax_amount_day\x18\x0f \x01(\x01R\fmaxAmountDay\x12(\n" +
+	"\x10max_amount_month\x18\x10 \x01(\x01R\x0emaxAmountMonth\"\x90\x04\n" +
 	"\x17CreateBankDetailRequest\x12\x1b\n" +
 	"\ttrader_id\x18\x01 \x01(\tR\btraderId\x12\x1a\n" +
 	"\bcurrency\x18\x02 \x01(\tR\bcurrency\x12\x18\n" +
@@ -860,7 +894,9 @@ const file_banking_proto_rawDesc = "" +
 	"cardNumber\x12\x14\n" +
 	"\x05phone\x18\v \x01(\tR\x05phone\x12\x14\n" +
 	"\x05owner\x18\f \x01(\tR\x05owner\x128\n" +
-	"\x18max_orders_simultaneosly\x18\r \x01(\x05R\x16maxOrdersSimultaneosly\"Z\n" +
+	"\x18max_orders_simultaneosly\x18\r \x01(\x05R\x16maxOrdersSimultaneosly\x12$\n" +
+	"\x0emax_amount_day\x18\x0e \x01(\x01R\fmaxAmountDay\x12(\n" +
+	"\x10max_amount_month\x18\x0f \x01(\x01R\x0emaxAmountMonth\"Z\n" +
 	"\x18CreateBankDetailResponse\x12$\n" +
 	"\x0ebank_detail_id\x18\x01 \x01(\tR\fbankDetailId\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"@\n" +

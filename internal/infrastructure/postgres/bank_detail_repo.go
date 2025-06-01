@@ -32,6 +32,8 @@ func (r *DefaultBankDetailRepository) CreateBankDetail(bankDetail *domain.BankDe
 		Phone: bankDetail.Phone,
 		Owner: bankDetail.Owner,
 		MaxOrdersSimultaneosly: bankDetail.MaxOrdersSimultaneosly,
+		MaxAmountDay: bankDetail.MaxAmountDay,
+		MaxAmountMonth: bankDetail.MaxAmountMonth,
 	}
 	if err := r.DB.Create(&bankDetailModel).Error; err != nil {
 		return "", err
@@ -70,6 +72,8 @@ func (r *DefaultBankDetailRepository) DeleteBankDetail(bankDetailID string) (*do
 		Phone: bankDetailModel.Phone,
 		Owner: bankDetailModel.Owner,
 		MaxOrdersSimultaneosly: bankDetailModel.MaxOrdersSimultaneosly,
+		MaxAmountDay: bankDetailModel.MaxAmountDay,
+		MaxAmountMonth: bankDetailModel.MaxAmountMonth,
 	}, nil
 
 }
@@ -90,6 +94,8 @@ func (r *DefaultBankDetailRepository) UpdateBankDetail(bankDetail *domain.BankDe
 		Phone: bankDetail.Phone,
 		Owner: bankDetail.Owner,
 		MaxOrdersSimultaneosly: bankDetail.MaxOrdersSimultaneosly,
+		MaxAmountDay: bankDetail.MaxAmountDay,
+		MaxAmountMonth: bankDetail.MaxAmountMonth,
 	}
 
 	if err := r.DB.Updates(&modelToUpdate).Error; err != nil {
@@ -124,6 +130,8 @@ func (r *DefaultBankDetailRepository) GetBankDetailByID(bankDetailID string) (*d
 		Phone: bankDetailModel.Phone,
 		Owner: bankDetailModel.Owner,
 		MaxOrdersSimultaneosly: bankDetailModel.MaxOrdersSimultaneosly,
+		MaxAmountDay: bankDetailModel.MaxAmountDay,
+		MaxAmountMonth: bankDetailModel.MaxAmountMonth,
 	}, nil
 }
 
@@ -151,6 +159,8 @@ func (r *DefaultBankDetailRepository) GetBankDetailsByTraderID(traderID string) 
 			Phone: bankDetailModel.Phone,
 			Owner: bankDetailModel.Owner,
 			MaxOrdersSimultaneosly: bankDetailModel.MaxOrdersSimultaneosly,
+			MaxAmountDay: bankDetailModel.MaxAmountDay,
+			MaxAmountMonth: bankDetailModel.MaxAmountMonth,
 		}
 	}
 
@@ -187,6 +197,8 @@ func (r *DefaultBankDetailRepository) GetEligibleBankDetails(query *domain.BankD
 			Phone: bankDetailModel.Phone,
 			Owner: bankDetailModel.Owner,
 			MaxOrdersSimultaneosly: bankDetailModel.MaxOrdersSimultaneosly,
+			MaxAmountDay: bankDetailModel.MaxAmountDay,
+			MaxAmountMonth: bankDetailModel.MaxAmountMonth,
 		}
 	}
 
