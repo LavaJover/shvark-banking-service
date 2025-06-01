@@ -34,6 +34,9 @@ type BankDetail struct {
 	PaymentSystem string                 `protobuf:"bytes,8,opt,name=payment_system,json=paymentSystem,proto3" json:"payment_system,omitempty"`
 	Enabled       bool                   `protobuf:"varint,9,opt,name=enabled,proto3" json:"enabled,omitempty"`
 	Delay         *durationpb.Duration   `protobuf:"bytes,10,opt,name=delay,proto3" json:"delay,omitempty"`
+	CardNumber    string                 `protobuf:"bytes,11,opt,name=card_number,json=cardNumber,proto3" json:"card_number,omitempty"`
+	Phone         string                 `protobuf:"bytes,12,opt,name=phone,proto3" json:"phone,omitempty"`
+	Owner         string                 `protobuf:"bytes,13,opt,name=owner,proto3" json:"owner,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -138,6 +141,27 @@ func (x *BankDetail) GetDelay() *durationpb.Duration {
 	return nil
 }
 
+func (x *BankDetail) GetCardNumber() string {
+	if x != nil {
+		return x.CardNumber
+	}
+	return ""
+}
+
+func (x *BankDetail) GetPhone() string {
+	if x != nil {
+		return x.Phone
+	}
+	return ""
+}
+
+func (x *BankDetail) GetOwner() string {
+	if x != nil {
+		return x.Owner
+	}
+	return ""
+}
+
 type CreateBankDetailRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TraderId      string                 `protobuf:"bytes,1,opt,name=trader_id,json=traderId,proto3" json:"trader_id,omitempty"`
@@ -149,6 +173,9 @@ type CreateBankDetailRequest struct {
 	PaymentSystem string                 `protobuf:"bytes,7,opt,name=payment_system,json=paymentSystem,proto3" json:"payment_system,omitempty"`
 	Enabled       bool                   `protobuf:"varint,8,opt,name=enabled,proto3" json:"enabled,omitempty"`
 	Delay         *durationpb.Duration   `protobuf:"bytes,9,opt,name=delay,proto3" json:"delay,omitempty"`
+	CardNumber    string                 `protobuf:"bytes,10,opt,name=card_number,json=cardNumber,proto3" json:"card_number,omitempty"`
+	Phone         string                 `protobuf:"bytes,11,opt,name=phone,proto3" json:"phone,omitempty"`
+	Owner         string                 `protobuf:"bytes,12,opt,name=owner,proto3" json:"owner,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -244,6 +271,27 @@ func (x *CreateBankDetailRequest) GetDelay() *durationpb.Duration {
 		return x.Delay
 	}
 	return nil
+}
+
+func (x *CreateBankDetailRequest) GetCardNumber() string {
+	if x != nil {
+		return x.CardNumber
+	}
+	return ""
+}
+
+func (x *CreateBankDetailRequest) GetPhone() string {
+	if x != nil {
+		return x.Phone
+	}
+	return ""
+}
+
+func (x *CreateBankDetailRequest) GetOwner() string {
+	if x != nil {
+		return x.Owner
+	}
+	return ""
 }
 
 type CreateBankDetailResponse struct {
@@ -758,7 +806,7 @@ var File_banking_proto protoreflect.FileDescriptor
 
 const file_banking_proto_rawDesc = "" +
 	"\n" +
-	"\rbanking.proto\x12\abanking\x1a\x1egoogle/protobuf/duration.proto\"\xd2\x02\n" +
+	"\rbanking.proto\x12\abanking\x1a\x1egoogle/protobuf/duration.proto\"\x9f\x03\n" +
 	"\n" +
 	"BankDetail\x12$\n" +
 	"\x0ebank_detail_id\x18\x01 \x01(\tR\fbankDetailId\x12\x1b\n" +
@@ -773,7 +821,11 @@ const file_banking_proto_rawDesc = "" +
 	"\x0epayment_system\x18\b \x01(\tR\rpaymentSystem\x12\x18\n" +
 	"\aenabled\x18\t \x01(\bR\aenabled\x12/\n" +
 	"\x05delay\x18\n" +
-	" \x01(\v2\x19.google.protobuf.DurationR\x05delay\"\xb9\x02\n" +
+	" \x01(\v2\x19.google.protobuf.DurationR\x05delay\x12\x1f\n" +
+	"\vcard_number\x18\v \x01(\tR\n" +
+	"cardNumber\x12\x14\n" +
+	"\x05phone\x18\f \x01(\tR\x05phone\x12\x14\n" +
+	"\x05owner\x18\r \x01(\tR\x05owner\"\x86\x03\n" +
 	"\x17CreateBankDetailRequest\x12\x1b\n" +
 	"\ttrader_id\x18\x01 \x01(\tR\btraderId\x12\x1a\n" +
 	"\bcurrency\x18\x02 \x01(\tR\bcurrency\x12\x18\n" +
@@ -785,7 +837,12 @@ const file_banking_proto_rawDesc = "" +
 	"\tbank_name\x18\x06 \x01(\tR\bbankName\x12%\n" +
 	"\x0epayment_system\x18\a \x01(\tR\rpaymentSystem\x12\x18\n" +
 	"\aenabled\x18\b \x01(\bR\aenabled\x12/\n" +
-	"\x05delay\x18\t \x01(\v2\x19.google.protobuf.DurationR\x05delay\"Z\n" +
+	"\x05delay\x18\t \x01(\v2\x19.google.protobuf.DurationR\x05delay\x12\x1f\n" +
+	"\vcard_number\x18\n" +
+	" \x01(\tR\n" +
+	"cardNumber\x12\x14\n" +
+	"\x05phone\x18\v \x01(\tR\x05phone\x12\x14\n" +
+	"\x05owner\x18\f \x01(\tR\x05owner\"Z\n" +
 	"\x18CreateBankDetailResponse\x12$\n" +
 	"\x0ebank_detail_id\x18\x01 \x01(\tR\fbankDetailId\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"@\n" +

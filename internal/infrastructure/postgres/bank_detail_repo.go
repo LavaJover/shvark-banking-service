@@ -28,6 +28,9 @@ func (r *DefaultBankDetailRepository) CreateBankDetail(bankDetail *domain.BankDe
 		PaymentSystem: bankDetail.PaymentSystem,
 		Delay: bankDetail.Delay,
 		Enabled: bankDetail.Enabled,
+		CardNumber: bankDetail.CardNumber,
+		Phone: bankDetail.Phone,
+		Owner: bankDetail.Owner,
 	}
 	if err := r.DB.Create(&bankDetailModel).Error; err != nil {
 		return "", err
@@ -62,6 +65,9 @@ func (r *DefaultBankDetailRepository) DeleteBankDetail(bankDetailID string) (*do
 		PaymentSystem: bankDetailModel.PaymentSystem,
 		Delay: bankDetailModel.Delay,
 		Enabled: bankDetailModel.Enabled,
+		CardNumber: bankDetailModel.CardNumber,
+		Phone: bankDetailModel.Phone,
+		Owner: bankDetailModel.Owner,
 	}, nil
 
 }
@@ -78,6 +84,9 @@ func (r *DefaultBankDetailRepository) UpdateBankDetail(bankDetail *domain.BankDe
 		PaymentSystem: bankDetail.PaymentSystem,
 		Delay: bankDetail.Delay,
 		Enabled: bankDetail.Enabled,
+		CardNumber: bankDetail.CardNumber,
+		Phone: bankDetail.Phone,
+		Owner: bankDetail.Owner,
 	}
 
 	if err := r.DB.Updates(&modelToUpdate).Error; err != nil {
@@ -108,6 +117,9 @@ func (r *DefaultBankDetailRepository) GetBankDetailByID(bankDetailID string) (*d
 		PaymentSystem: bankDetailModel.PaymentSystem,
 		Delay: bankDetailModel.Delay,
 		Enabled: bankDetailModel.Enabled,
+		CardNumber: bankDetailModel.CardNumber,
+		Phone: bankDetailModel.Phone,
+		Owner: bankDetailModel.Owner,
 	}, nil
 }
 
@@ -131,6 +143,9 @@ func (r *DefaultBankDetailRepository) GetBankDetailsByTraderID(traderID string) 
 			PaymentSystem: bankDetailModel.PaymentSystem,
 			Delay: bankDetailModel.Delay,
 			Enabled: bankDetailModel.Enabled,
+			CardNumber: bankDetailModel.CardNumber,
+			Phone: bankDetailModel.Phone,
+			Owner: bankDetailModel.Owner,
 		}
 	}
 
@@ -163,6 +178,9 @@ func (r *DefaultBankDetailRepository) GetEligibleBankDetails(query *domain.BankD
 			PaymentSystem: bankDetailModel.PaymentSystem,
 			Delay: bankDetailModel.Delay,
 			Enabled: bankDetailModel.Enabled,
+			CardNumber: bankDetailModel.CardNumber,
+			Phone: bankDetailModel.Phone,
+			Owner: bankDetailModel.Owner,
 		}
 	}
 

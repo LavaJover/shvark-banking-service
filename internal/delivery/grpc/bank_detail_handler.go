@@ -28,6 +28,9 @@ func (h *BankDetailHandler) CreateBankDetail(ctx context.Context, r *bankingpb.C
 		PaymentSystem: r.PaymentSystem,
 		Delay: r.Delay.AsDuration(),
 		Enabled: r.Enabled,
+		CardNumber: r.CardNumber,
+		Phone: r.Phone,
+		Owner: r.Owner,
 	}
 	bankDetailID, err := h.uc.CreateBankDetail(&bankDetail)
 	if err != nil {
@@ -58,6 +61,9 @@ func (h *BankDetailHandler) GetBankDetailByID(ctx context.Context, r *bankingpb.
 			PaymentSystem: response.PaymentSystem,
 			Enabled: response.Enabled,
 			Delay: durationpb.New(response.Delay),
+			CardNumber: response.CardNumber,
+			Phone: response.Phone,
+			Owner: response.Owner,
 		},
 	}, nil
 }
@@ -74,6 +80,9 @@ func (h *BankDetailHandler) UpdateBankDetail(ctx context.Context, r *bankingpb.U
 		PaymentSystem: r.BankDetail.PaymentSystem,
 		Delay: r.BankDetail.Delay.AsDuration(),
 		Enabled: r.BankDetail.Enabled,
+		CardNumber: r.BankDetail.CardNumber,
+		Phone: r.BankDetail.Phone,
+		Owner: r.BankDetail.Owner,
 	}
 
 	err := h.uc.UpdateBankDetail(&bankDetailUpdate)
@@ -103,6 +112,9 @@ func (h *BankDetailHandler) DeleteBankDetail(ctx context.Context, r *bankingpb.D
 			PaymentSystem: response.PaymentSystem,
 			Enabled: response.Enabled,
 			Delay: durationpb.New(response.Delay),
+			CardNumber: response.CardNumber,
+			Phone: response.Phone,
+			Owner: response.Owner,
 		},
 	}, nil
 }
@@ -128,6 +140,9 @@ func (h *BankDetailHandler) GetBankDetailsByTraderID(ctx context.Context, r *ban
 			PaymentSystem: bankDetail.PaymentSystem,
 			Enabled: bankDetail.Enabled,
 			Delay: durationpb.New(bankDetail.Delay),
+			CardNumber: bankDetail.CardNumber,
+			Phone: bankDetail.Phone,
+			Owner: bankDetail.Owner,
 		}
 	}
 
@@ -163,6 +178,9 @@ func (h *BankDetailHandler) GetEligibleBankDetails(ctx context.Context, r *banki
 			PaymentSystem: bankDetail.PaymentSystem,
 			Enabled: bankDetail.Enabled,
 			Delay: durationpb.New(bankDetail.Delay),
+			CardNumber: bankDetail.CardNumber,
+			Phone: bankDetail.Phone,
+			Owner: bankDetail.Owner,
 		}
 	}
 

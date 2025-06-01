@@ -13,6 +13,9 @@ type BankDetail struct {
 	PaymentSystem 	string
 	Delay			time.Duration
 	Enabled 		bool
+	CardNumber 		string
+	Phone 			string
+	Owner 			string
 }
 
 type BankDetailQuery struct {

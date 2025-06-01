@@ -25,7 +25,10 @@ message BankDetail {
     string bank_name = 7;
     string payment_system = 8;
     bool enabled = 9;
-    google.protobuf.Duration delay = 10; 
+    google.protobuf.Duration delay = 10;
+    string card_number = 11;
+    string phone = 12;
+    string owner = 13;
 }
 
 message CreateBankDetailRequest {
@@ -37,7 +40,10 @@ message CreateBankDetailRequest {
     string bank_name = 6;
     string payment_system = 7;
     bool enabled = 8;
-    google.protobuf.Duration delay = 9; 
+    google.protobuf.Duration delay = 9;
+    string card_number = 10;
+    string phone = 11;
+    string owner = 12;
 }
 
 message CreateBankDetailResponse {
