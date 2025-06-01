@@ -6,4 +6,5 @@ type BankDetailUsecase interface {
 	DeleteBankDetail(bankDetailID string) (*BankDetail, error)
 	UpdateBankDetail(bankDetail *BankDetail) error
 	GetBankDetailsByTraderID(traderID string) ([]*BankDetail, error)
+	GetEligibleBankDetails(query *BankDetailQuery) ([]*BankDetail, error)
 }

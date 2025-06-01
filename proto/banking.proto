@@ -12,6 +12,7 @@ service BankingService {
     rpc UpdateBankDetail(UpdateBankDetailRequest) returns (UpdateBankDetailResponse);
     rpc DeleteBankDetail(DeleteBankDetailRequest) returns (DeleteBankDetailResponse);
     rpc GetBankDetailsByTraderID(GetBankDetailsByTraderIDRequest) returns (GetBankDetailsByTraderIDResponse);
+    rpc GetEligibleBankDetails(GetEligibleBankDetailsRequest) returns (GetEligibleBankDetailsResponse);
 }
 
 message BankDetail {
@@ -71,5 +72,16 @@ message GetBankDetailsByTraderIDRequest {
 }
 
 message GetBankDetailsByTraderIDResponse {
+    repeated BankDetail bank_details = 1;
+}
+
+message GetEligibleBankDetailsRequest {
+    string currency = 1;
+    string country = 2;
+    double amount = 3;
+    string payment_system = 4;
+}
+
+message GetEligibleBankDetailsResponse {
     repeated BankDetail bank_details = 1;
 }

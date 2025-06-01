@@ -6,4 +6,5 @@ type BankDetailRepository interface {
 	UpdateBankDetail(bankDetail *BankDetail) error
 	GetBankDetailByID(bankDetailID string) (*BankDetail, error)
 	GetBankDetailsByTraderID(traderID string) ([]*BankDetail, error)
+	GetEligibleBankDetails(query *BankDetailQuery) ([]*BankDetail, error)
 }

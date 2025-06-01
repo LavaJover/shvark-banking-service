@@ -31,3 +31,7 @@ func (uc *DefaultBankDetailUsecase) DeleteBankDetail(bankDetailID string) (*doma
 func (uc *DefaultBankDetailUsecase) GetBankDetailsByTraderID(traderID string) ([]*domain.BankDetail, error) {
 	return uc.repo.GetBankDetailsByTraderID(traderID)
 }
+
+func (uc *DefaultBankDetailUsecase) GetEligibleBankDetails(query *domain.BankDetailQuery) ([]*domain.BankDetail, error) {
+	return uc.repo.GetEligibleBankDetails(query)
+}

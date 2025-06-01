@@ -14,3 +14,10 @@ type BankDetail struct {
 	Delay			time.Duration
 	Enabled 		bool
 }
+
+type BankDetailQuery struct {
+	Amount 			float32
+	Currency 		string
+	PaymentSystem 	string
+	Country 		string
+}

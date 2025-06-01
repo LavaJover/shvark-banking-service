@@ -134,3 +134,38 @@ func (h *BankDetailHandler) GetBankDetailsByTraderID(ctx context.Context, r *ban
 		BankDetails: bankDetailsResponse,
 	}, nil
 }
+
+func (h *BankDetailHandler) GetEligibleBankDetails(ctx context.Context, r *bankingpb.GetEligibleBankDetailsRequest) (*bankingpb.GetEligibleBankDetailsResponse, error) {
+	query := &domain.BankDetailQuery{
+		Amount: float32(r.Amount),
+		Currency: r.Currency,
+		PaymentSystem: r.PaymentSystem,
+		Country: r.Country,
+	}
+
+	bankDetails, err := h.uc.GetEligibleBankDetails(query)
+	if err != nil {
+		return nil, err
+	}
+
+	bankDetailsResponse := make([]*bankingpb.BankDetail, len(bankDetails))
+
+	for i, bankDetail := range bankDetails {
+		bankDetailsResponse[i] = &bankingpb.BankDetail{
+			BankDetailId: bankDetail.ID,
+			TraderId: bankDetail.TraderID,
+			Currency: bankDetail.Currency,
+			Country: bankDetail.Country,
+			MinAmount: float64(bankDetail.MinAmount),
+			MaxAmount: float64(bankDetail.MaxAmount),
+			BankName: bankDetail.BankName,
+			PaymentSystem: bankDetail.PaymentSystem,
+			Enabled: bankDetail.Enabled,
+			Delay: durationpb.New(bankDetail.Delay),
+		}
+	}
+
+	return &bankingpb.GetEligibleBankDetailsResponse{
+		BankDetails: bankDetailsResponse,
+	}, nil
+}

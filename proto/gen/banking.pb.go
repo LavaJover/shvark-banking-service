@@ -642,6 +642,118 @@ func (x *GetBankDetailsByTraderIDResponse) GetBankDetails() []*BankDetail {
 	return nil
 }
 
+type GetEligibleBankDetailsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Currency      string                 `protobuf:"bytes,1,opt,name=currency,proto3" json:"currency,omitempty"`
+	Country       string                 `protobuf:"bytes,2,opt,name=country,proto3" json:"country,omitempty"`
+	Amount        float64                `protobuf:"fixed64,3,opt,name=amount,proto3" json:"amount,omitempty"`
+	PaymentSystem string                 `protobuf:"bytes,4,opt,name=payment_system,json=paymentSystem,proto3" json:"payment_system,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetEligibleBankDetailsRequest) Reset() {
+	*x = GetEligibleBankDetailsRequest{}
+	mi := &file_banking_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEligibleBankDetailsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEligibleBankDetailsRequest) ProtoMessage() {}
+
+func (x *GetEligibleBankDetailsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_banking_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEligibleBankDetailsRequest.ProtoReflect.Descriptor instead.
+func (*GetEligibleBankDetailsRequest) Descriptor() ([]byte, []int) {
+	return file_banking_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetEligibleBankDetailsRequest) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *GetEligibleBankDetailsRequest) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+func (x *GetEligibleBankDetailsRequest) GetAmount() float64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *GetEligibleBankDetailsRequest) GetPaymentSystem() string {
+	if x != nil {
+		return x.PaymentSystem
+	}
+	return ""
+}
+
+type GetEligibleBankDetailsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	BankDetails   []*BankDetail          `protobuf:"bytes,1,rep,name=bank_details,json=bankDetails,proto3" json:"bank_details,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetEligibleBankDetailsResponse) Reset() {
+	*x = GetEligibleBankDetailsResponse{}
+	mi := &file_banking_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEligibleBankDetailsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEligibleBankDetailsResponse) ProtoMessage() {}
+
+func (x *GetEligibleBankDetailsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_banking_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEligibleBankDetailsResponse.ProtoReflect.Descriptor instead.
+func (*GetEligibleBankDetailsResponse) Descriptor() ([]byte, []int) {
+	return file_banking_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetEligibleBankDetailsResponse) GetBankDetails() []*BankDetail {
+	if x != nil {
+		return x.BankDetails
+	}
+	return nil
+}
+
 var File_banking_proto protoreflect.FileDescriptor
 
 const file_banking_proto_rawDesc = "" +
@@ -694,13 +806,21 @@ const file_banking_proto_rawDesc = "" +
 	"\x1fGetBankDetailsByTraderIDRequest\x12\x1b\n" +
 	"\ttrader_id\x18\x01 \x01(\tR\btraderId\"Z\n" +
 	" GetBankDetailsByTraderIDResponse\x126\n" +
-	"\fbank_details\x18\x01 \x03(\v2\x13.banking.BankDetailR\vbankDetails2\xe8\x03\n" +
+	"\fbank_details\x18\x01 \x03(\v2\x13.banking.BankDetailR\vbankDetails\"\x94\x01\n" +
+	"\x1dGetEligibleBankDetailsRequest\x12\x1a\n" +
+	"\bcurrency\x18\x01 \x01(\tR\bcurrency\x12\x18\n" +
+	"\acountry\x18\x02 \x01(\tR\acountry\x12\x16\n" +
+	"\x06amount\x18\x03 \x01(\x01R\x06amount\x12%\n" +
+	"\x0epayment_system\x18\x04 \x01(\tR\rpaymentSystem\"X\n" +
+	"\x1eGetEligibleBankDetailsResponse\x126\n" +
+	"\fbank_details\x18\x01 \x03(\v2\x13.banking.BankDetailR\vbankDetails2\xd3\x04\n" +
 	"\x0eBankingService\x12W\n" +
 	"\x10CreateBankDetail\x12 .banking.CreateBankDetailRequest\x1a!.banking.CreateBankDetailResponse\x12Z\n" +
 	"\x11GetBankDetailByID\x12!.banking.GetBankDetailByIDRequest\x1a\".banking.GetBankDetailByIDResponse\x12W\n" +
 	"\x10UpdateBankDetail\x12 .banking.UpdateBankDetailRequest\x1a!.banking.UpdateBankDetailResponse\x12W\n" +
 	"\x10DeleteBankDetail\x12 .banking.DeleteBankDetailRequest\x1a!.banking.DeleteBankDetailResponse\x12o\n" +
-	"\x18GetBankDetailsByTraderID\x12(.banking.GetBankDetailsByTraderIDRequest\x1a).banking.GetBankDetailsByTraderIDResponseB7Z5github.com/LavaJover/shvark-banking-service;bankingpbb\x06proto3"
+	"\x18GetBankDetailsByTraderID\x12(.banking.GetBankDetailsByTraderIDRequest\x1a).banking.GetBankDetailsByTraderIDResponse\x12i\n" +
+	"\x16GetEligibleBankDetails\x12&.banking.GetEligibleBankDetailsRequest\x1a'.banking.GetEligibleBankDetailsResponseB7Z5github.com/LavaJover/shvark-banking-service;bankingpbb\x06proto3"
 
 var (
 	file_banking_proto_rawDescOnce sync.Once
@@ -714,7 +834,7 @@ func file_banking_proto_rawDescGZIP() []byte {
 	return file_banking_proto_rawDescData
 }
 
-var file_banking_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_banking_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_banking_proto_goTypes = []any{
 	(*BankDetail)(nil),                       // 0: banking.BankDetail
 	(*CreateBankDetailRequest)(nil),          // 1: banking.CreateBankDetailRequest
@@ -727,30 +847,35 @@ var file_banking_proto_goTypes = []any{
 	(*DeleteBankDetailResponse)(nil),         // 8: banking.DeleteBankDetailResponse
 	(*GetBankDetailsByTraderIDRequest)(nil),  // 9: banking.GetBankDetailsByTraderIDRequest
 	(*GetBankDetailsByTraderIDResponse)(nil), // 10: banking.GetBankDetailsByTraderIDResponse
-	(*durationpb.Duration)(nil),              // 11: google.protobuf.Duration
+	(*GetEligibleBankDetailsRequest)(nil),    // 11: banking.GetEligibleBankDetailsRequest
+	(*GetEligibleBankDetailsResponse)(nil),   // 12: banking.GetEligibleBankDetailsResponse
+	(*durationpb.Duration)(nil),              // 13: google.protobuf.Duration
 }
 var file_banking_proto_depIdxs = []int32{
-	11, // 0: banking.BankDetail.delay:type_name -> google.protobuf.Duration
-	11, // 1: banking.CreateBankDetailRequest.delay:type_name -> google.protobuf.Duration
+	13, // 0: banking.BankDetail.delay:type_name -> google.protobuf.Duration
+	13, // 1: banking.CreateBankDetailRequest.delay:type_name -> google.protobuf.Duration
 	0,  // 2: banking.GetBankDetailByIDResponse.bank_detail:type_name -> banking.BankDetail
 	0,  // 3: banking.UpdateBankDetailRequest.bank_detail:type_name -> banking.BankDetail
 	0,  // 4: banking.DeleteBankDetailResponse.bank_detail:type_name -> banking.BankDetail
 	0,  // 5: banking.GetBankDetailsByTraderIDResponse.bank_details:type_name -> banking.BankDetail
-	1,  // 6: banking.BankingService.CreateBankDetail:input_type -> banking.CreateBankDetailRequest
-	3,  // 7: banking.BankingService.GetBankDetailByID:input_type -> banking.GetBankDetailByIDRequest
-	5,  // 8: banking.BankingService.UpdateBankDetail:input_type -> banking.UpdateBankDetailRequest
-	7,  // 9: banking.BankingService.DeleteBankDetail:input_type -> banking.DeleteBankDetailRequest
-	9,  // 10: banking.BankingService.GetBankDetailsByTraderID:input_type -> banking.GetBankDetailsByTraderIDRequest
-	2,  // 11: banking.BankingService.CreateBankDetail:output_type -> banking.CreateBankDetailResponse
-	4,  // 12: banking.BankingService.GetBankDetailByID:output_type -> banking.GetBankDetailByIDResponse
-	6,  // 13: banking.BankingService.UpdateBankDetail:output_type -> banking.UpdateBankDetailResponse
-	8,  // 14: banking.BankingService.DeleteBankDetail:output_type -> banking.DeleteBankDetailResponse
-	10, // 15: banking.BankingService.GetBankDetailsByTraderID:output_type -> banking.GetBankDetailsByTraderIDResponse
-	11, // [11:16] is the sub-list for method output_type
-	6,  // [6:11] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	0,  // 6: banking.GetEligibleBankDetailsResponse.bank_details:type_name -> banking.BankDetail
+	1,  // 7: banking.BankingService.CreateBankDetail:input_type -> banking.CreateBankDetailRequest
+	3,  // 8: banking.BankingService.GetBankDetailByID:input_type -> banking.GetBankDetailByIDRequest
+	5,  // 9: banking.BankingService.UpdateBankDetail:input_type -> banking.UpdateBankDetailRequest
+	7,  // 10: banking.BankingService.DeleteBankDetail:input_type -> banking.DeleteBankDetailRequest
+	9,  // 11: banking.BankingService.GetBankDetailsByTraderID:input_type -> banking.GetBankDetailsByTraderIDRequest
+	11, // 12: banking.BankingService.GetEligibleBankDetails:input_type -> banking.GetEligibleBankDetailsRequest
+	2,  // 13: banking.BankingService.CreateBankDetail:output_type -> banking.CreateBankDetailResponse
+	4,  // 14: banking.BankingService.GetBankDetailByID:output_type -> banking.GetBankDetailByIDResponse
+	6,  // 15: banking.BankingService.UpdateBankDetail:output_type -> banking.UpdateBankDetailResponse
+	8,  // 16: banking.BankingService.DeleteBankDetail:output_type -> banking.DeleteBankDetailResponse
+	10, // 17: banking.BankingService.GetBankDetailsByTraderID:output_type -> banking.GetBankDetailsByTraderIDResponse
+	12, // 18: banking.BankingService.GetEligibleBankDetails:output_type -> banking.GetEligibleBankDetailsResponse
+	13, // [13:19] is the sub-list for method output_type
+	7,  // [7:13] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_banking_proto_init() }
@@ -764,7 +889,7 @@ func file_banking_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_banking_proto_rawDesc), len(file_banking_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

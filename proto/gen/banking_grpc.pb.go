@@ -24,6 +24,7 @@ const (
 	BankingService_UpdateBankDetail_FullMethodName         = "/banking.BankingService/UpdateBankDetail"
 	BankingService_DeleteBankDetail_FullMethodName         = "/banking.BankingService/DeleteBankDetail"
 	BankingService_GetBankDetailsByTraderID_FullMethodName = "/banking.BankingService/GetBankDetailsByTraderID"
+	BankingService_GetEligibleBankDetails_FullMethodName   = "/banking.BankingService/GetEligibleBankDetails"
 )
 
 // BankingServiceClient is the client API for BankingService service.
@@ -35,6 +36,7 @@ type BankingServiceClient interface {
 	UpdateBankDetail(ctx context.Context, in *UpdateBankDetailRequest, opts ...grpc.CallOption) (*UpdateBankDetailResponse, error)
 	DeleteBankDetail(ctx context.Context, in *DeleteBankDetailRequest, opts ...grpc.CallOption) (*DeleteBankDetailResponse, error)
 	GetBankDetailsByTraderID(ctx context.Context, in *GetBankDetailsByTraderIDRequest, opts ...grpc.CallOption) (*GetBankDetailsByTraderIDResponse, error)
+	GetEligibleBankDetails(ctx context.Context, in *GetEligibleBankDetailsRequest, opts ...grpc.CallOption) (*GetEligibleBankDetailsResponse, error)
 }
 
 type bankingServiceClient struct {
@@ -95,6 +97,16 @@ func (c *bankingServiceClient) GetBankDetailsByTraderID(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *bankingServiceClient) GetEligibleBankDetails(ctx context.Context, in *GetEligibleBankDetailsRequest, opts ...grpc.CallOption) (*GetEligibleBankDetailsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetEligibleBankDetailsResponse)
+	err := c.cc.Invoke(ctx, BankingService_GetEligibleBankDetails_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BankingServiceServer is the server API for BankingService service.
 // All implementations must embed UnimplementedBankingServiceServer
 // for forward compatibility.
@@ -104,6 +116,7 @@ type BankingServiceServer interface {
 	UpdateBankDetail(context.Context, *UpdateBankDetailRequest) (*UpdateBankDetailResponse, error)
 	DeleteBankDetail(context.Context, *DeleteBankDetailRequest) (*DeleteBankDetailResponse, error)
 	GetBankDetailsByTraderID(context.Context, *GetBankDetailsByTraderIDRequest) (*GetBankDetailsByTraderIDResponse, error)
+	GetEligibleBankDetails(context.Context, *GetEligibleBankDetailsRequest) (*GetEligibleBankDetailsResponse, error)
 	mustEmbedUnimplementedBankingServiceServer()
 }
 
@@ -128,6 +141,9 @@ func (UnimplementedBankingServiceServer) DeleteBankDetail(context.Context, *Dele
 }
 func (UnimplementedBankingServiceServer) GetBankDetailsByTraderID(context.Context, *GetBankDetailsByTraderIDRequest) (*GetBankDetailsByTraderIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBankDetailsByTraderID not implemented")
+}
+func (UnimplementedBankingServiceServer) GetEligibleBankDetails(context.Context, *GetEligibleBankDetailsRequest) (*GetEligibleBankDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetEligibleBankDetails not implemented")
 }
 func (UnimplementedBankingServiceServer) mustEmbedUnimplementedBankingServiceServer() {}
 func (UnimplementedBankingServiceServer) testEmbeddedByValue()                        {}
@@ -240,6 +256,24 @@ func _BankingService_GetBankDetailsByTraderID_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BankingService_GetEligibleBankDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetEligibleBankDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BankingServiceServer).GetEligibleBankDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BankingService_GetEligibleBankDetails_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BankingServiceServer).GetEligibleBankDetails(ctx, req.(*GetEligibleBankDetailsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BankingService_ServiceDesc is the grpc.ServiceDesc for BankingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +300,10 @@ var BankingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBankDetailsByTraderID",
 			Handler:    _BankingService_GetBankDetailsByTraderID_Handler,
+		},
+		{
+			MethodName: "GetEligibleBankDetails",
+			Handler:    _BankingService_GetEligibleBankDetails_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

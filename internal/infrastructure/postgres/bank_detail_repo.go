@@ -2,8 +2,10 @@ package postgres
 
 import (
 	"github.com/LavaJover/shvark-banking-service/internal/domain"
-	"gorm.io/gorm"
 	"github.com/google/uuid"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+	"gorm.io/gorm"
 )
 
 type DefaultBankDetailRepository struct {
@@ -133,4 +135,36 @@ func (r *DefaultBankDetailRepository) GetBankDetailsByTraderID(traderID string) 
 	}
 
 	return bankDetailsResponse, nil
+}
+
+func (r *DefaultBankDetailRepository) GetEligibleBankDetails(query *domain.BankDetailQuery) ([]*domain.BankDetail, error) {
+	var bankDetailModels []BankDetailModel
+	err := r.DB.
+		Where("enabled = ?", true).
+		Where("country = ?", query.Country).
+		Where("min_amount <= ? AND max_amount >= ?", query.Amount).
+		Where("payment_system = ?", query.PaymentSystem).
+		Find(&bankDetailModels).Error
+	
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, "db query failed: %v\n", err.Error())
+	}
+
+	bankDetails := make([]*domain.BankDetail, len(bankDetailModels))
+	for i, bankDetailModel := range bankDetailModels {
+		bankDetails[i] = &domain.BankDetail{
+			ID: bankDetailModel.ID,
+			TraderID: bankDetailModel.TraderID,
+			Country: bankDetailModel.Country,
+			Currency: bankDetailModel.Currency,
+			MinAmount: bankDetailModel.MinAmount,
+			MaxAmount: bankDetailModel.MaxAmount,
+			BankName: bankDetailModel.BankName,
+			PaymentSystem: bankDetailModel.PaymentSystem,
+			Delay: bankDetailModel.Delay,
+			Enabled: bankDetailModel.Enabled,
+		}
+	}
+
+	return bankDetails, nil
 }
