@@ -27,6 +27,7 @@ func (h *BankDetailHandler) CreateBankDetail(ctx context.Context, r *bankingpb.C
 		BankName: r.BankName,
 		PaymentSystem: r.PaymentSystem,
 		Delay: r.Delay.AsDuration(),
+		Enabled: r.Enabled,
 	}
 	bankDetailID, err := h.uc.CreateBankDetail(&bankDetail)
 	if err != nil {
