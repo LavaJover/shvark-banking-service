@@ -32,6 +32,11 @@ func (h *BankDetailHandler) CreateBankDetail(ctx context.Context, r *bankingpb.C
 		Phone: r.Phone,
 		Owner: r.Owner,
 		MaxOrdersSimultaneosly: r.MaxOrdersSimultaneosly,
+		MaxAmountDay: int32(r.MaxAmountDay),
+		MaxAmountMonth: int32(r.MaxAmountMonth),
+		MaxQuantityDay: int32(r.MaxQuantityDay),
+		MaxQuantityMonth: int32(r.MaxQuantityMonth),
+		DeviceID: r.DeviceId,
 	}
 	bankDetailID, err := h.uc.CreateBankDetail(&bankDetail)
 	if err != nil {
@@ -66,6 +71,11 @@ func (h *BankDetailHandler) GetBankDetailByID(ctx context.Context, r *bankingpb.
 			Phone: response.Phone,
 			Owner: response.Owner,
 			MaxOrdersSimultaneosly: response.MaxOrdersSimultaneosly,
+			MaxAmountDay: float64(response.MaxAmountDay),
+			MaxAmountMonth: float64(response.MaxAmountMonth),
+			MaxQuantityDay: float64(response.MaxQuantityDay),
+			MaxQuantityMonth: float64(response.MaxAmountMonth),
+			DeviceId: response.DeviceID,
 		},
 	}, nil
 }
@@ -86,6 +96,11 @@ func (h *BankDetailHandler) UpdateBankDetail(ctx context.Context, r *bankingpb.U
 		Phone: r.BankDetail.Phone,
 		Owner: r.BankDetail.Owner,
 		MaxOrdersSimultaneosly: r.BankDetail.MaxOrdersSimultaneosly,
+		MaxAmountDay: int32(r.BankDetail.MaxAmountDay),
+		MaxAmountMonth: int32(r.BankDetail.MaxAmountMonth),
+		MaxQuantityDay: int32(r.BankDetail.MaxQuantityDay),
+		MaxQuantityMonth: int32(r.BankDetail.MaxQuantityMonth),
+		DeviceID: r.BankDetail.DeviceId,
 	}
 
 	err := h.uc.UpdateBankDetail(&bankDetailUpdate)
@@ -119,6 +134,11 @@ func (h *BankDetailHandler) DeleteBankDetail(ctx context.Context, r *bankingpb.D
 			Phone: response.Phone,
 			Owner: response.Owner,
 			MaxOrdersSimultaneosly: response.MaxOrdersSimultaneosly,
+			MaxAmountDay: float64(response.MaxAmountDay),
+			MaxAmountMonth: float64(response.MaxAmountMonth),
+			MaxQuantityDay: float64(response.MaxQuantityDay),
+			MaxQuantityMonth: float64(response.MaxQuantityMonth),
+			DeviceId: response.DeviceID,
 		},
 	}, nil
 }
@@ -148,6 +168,11 @@ func (h *BankDetailHandler) GetBankDetailsByTraderID(ctx context.Context, r *ban
 			Phone: bankDetail.Phone,
 			Owner: bankDetail.Owner,
 			MaxOrdersSimultaneosly: bankDetail.MaxOrdersSimultaneosly,
+			MaxAmountDay: float64(bankDetail.MaxAmountDay),
+			MaxAmountMonth: float64(bankDetail.MaxAmountMonth),
+			MaxQuantityDay: float64(bankDetail.MaxQuantityDay),
+			MaxQuantityMonth: float64(bankDetail.MaxQuantityMonth),
+			DeviceId: bankDetail.DeviceID,
 		}
 	}
 
@@ -187,6 +212,11 @@ func (h *BankDetailHandler) GetEligibleBankDetails(ctx context.Context, r *banki
 			Phone: bankDetail.Phone,
 			Owner: bankDetail.Owner,
 			MaxOrdersSimultaneosly: bankDetail.MaxOrdersSimultaneosly,
+			MaxAmountDay: float64(bankDetail.MaxAmountDay),
+			MaxAmountMonth: float64(bankDetail.MaxAmountMonth),
+			MaxQuantityDay: float64(bankDetail.MaxQuantityDay),
+			MaxQuantityMonth: float64(bankDetail.MaxQuantityMonth),
+			DeviceId: bankDetail.DeviceID,
 		}
 	}
 
