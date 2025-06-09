@@ -34,6 +34,9 @@ func (r *DefaultBankDetailRepository) CreateBankDetail(bankDetail *domain.BankDe
 		MaxOrdersSimultaneosly: bankDetail.MaxOrdersSimultaneosly,
 		MaxAmountDay: bankDetail.MaxAmountDay,
 		MaxAmountMonth: bankDetail.MaxAmountMonth,
+		MaxQuantityDay: bankDetail.MaxQuantityDay,
+		MaxQuantityMonth: bankDetail.MaxAmountMonth,
+		DeviceID: bankDetail.DeviceID,
 	}
 	if err := r.DB.Create(&bankDetailModel).Error; err != nil {
 		return "", err
@@ -74,6 +77,9 @@ func (r *DefaultBankDetailRepository) DeleteBankDetail(bankDetailID string) (*do
 		MaxOrdersSimultaneosly: bankDetailModel.MaxOrdersSimultaneosly,
 		MaxAmountDay: bankDetailModel.MaxAmountDay,
 		MaxAmountMonth: bankDetailModel.MaxAmountMonth,
+		MaxQuantityDay: bankDetailModel.MaxQuantityDay,
+		MaxQuantityMonth: bankDetailModel.MaxQuantityMonth,
+		DeviceID: bankDetailModel.DeviceID,
 	}, nil
 
 }
@@ -96,6 +102,9 @@ func (r *DefaultBankDetailRepository) UpdateBankDetail(bankDetail *domain.BankDe
 		MaxOrdersSimultaneosly: bankDetail.MaxOrdersSimultaneosly,
 		MaxAmountDay: bankDetail.MaxAmountDay,
 		MaxAmountMonth: bankDetail.MaxAmountMonth,
+		MaxQuantityDay: bankDetail.MaxQuantityDay,
+		MaxQuantityMonth: bankDetail.MaxAmountMonth,
+		DeviceID: bankDetail.DeviceID,
 	}
 
 	if err := r.DB.Updates(&modelToUpdate).Error; err != nil {
@@ -132,6 +141,9 @@ func (r *DefaultBankDetailRepository) GetBankDetailByID(bankDetailID string) (*d
 		MaxOrdersSimultaneosly: bankDetailModel.MaxOrdersSimultaneosly,
 		MaxAmountDay: bankDetailModel.MaxAmountDay,
 		MaxAmountMonth: bankDetailModel.MaxAmountMonth,
+		MaxQuantityDay: bankDetailModel.MaxQuantityDay,
+		MaxQuantityMonth: bankDetailModel.MaxQuantityMonth,
+		DeviceID: bankDetailModel.DeviceID,
 	}, nil
 }
 
@@ -161,6 +173,9 @@ func (r *DefaultBankDetailRepository) GetBankDetailsByTraderID(traderID string) 
 			MaxOrdersSimultaneosly: bankDetailModel.MaxOrdersSimultaneosly,
 			MaxAmountDay: bankDetailModel.MaxAmountDay,
 			MaxAmountMonth: bankDetailModel.MaxAmountMonth,
+			MaxQuantityDay: bankDetailModel.MaxQuantityDay,
+			MaxQuantityMonth: bankDetailModel.MaxQuantityMonth,
+			DeviceID: bankDetailModel.DeviceID,
 		}
 	}
 
@@ -199,6 +214,9 @@ func (r *DefaultBankDetailRepository) GetEligibleBankDetails(query *domain.BankD
 			MaxOrdersSimultaneosly: bankDetailModel.MaxOrdersSimultaneosly,
 			MaxAmountDay: bankDetailModel.MaxAmountDay,
 			MaxAmountMonth: bankDetailModel.MaxAmountMonth,
+			MaxQuantityDay: bankDetailModel.MaxQuantityDay,
+			MaxQuantityMonth: bankDetailModel.MaxQuantityMonth,
+			DeviceID: bankDetailModel.DeviceID,
 		}
 	}
 

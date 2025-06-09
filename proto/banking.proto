@@ -32,6 +32,9 @@ message BankDetail {
     int32  max_orders_simultaneosly = 14;
     double max_amount_day = 15;
     double max_amount_month = 16;
+    double max_quantity_day = 17;
+    double max_quantity_month = 18;
+    string device_id = 19;
 }
 
 message CreateBankDetailRequest {
@@ -50,6 +53,9 @@ message CreateBankDetailRequest {
     int32  max_orders_simultaneosly = 13;
     double max_amount_day = 14;
     double max_amount_month = 15;
+    double max_quantity_day = 16;
+    double max_quantity_month = 17;
+    string device_id = 18;
 }
 
 message CreateBankDetailResponse {
