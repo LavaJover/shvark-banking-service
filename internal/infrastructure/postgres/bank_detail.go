@@ -21,5 +21,5 @@ type BankDetailModel struct {
 	MaxAmountMonth			int32
 	MaxQuantityDay			int32
 	MaxQuantityMonth		int32
-	DeviceID				string	`gorm:"type:uuid"`
+	DeviceID				string
 }
