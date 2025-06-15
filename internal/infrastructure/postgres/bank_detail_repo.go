@@ -114,6 +114,13 @@ func (r *DefaultBankDetailRepository) UpdateBankDetail(bankDetail *domain.BankDe
 		return err
 	}
 
+	if err := r.DB.Model(&modelToUpdate).Updates(map[string]interface{}{
+		"enabled": bankDetail.Enabled,
+		"delay": bankDetail.Delay,
+		}).Error; err != nil {
+		return err
+	}
+
 	return nil
 }
 
