@@ -15,7 +15,7 @@ func MustInitDB(cfg *config.BankingConfig) *gorm.DB {
 		log.Fatalf("failed to load db: %v\n", err.Error())
 	}
 
-	db.AutoMigrate(&BankDetailModel{})
+	db.AutoMigrate(&BankModel{}, &BankDetailModel{})
 
 	return db
 }

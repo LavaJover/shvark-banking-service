@@ -13,6 +13,11 @@ service BankingService {
     rpc DeleteBankDetail(DeleteBankDetailRequest) returns (DeleteBankDetailResponse);
     rpc GetBankDetailsByTraderID(GetBankDetailsByTraderIDRequest) returns (GetBankDetailsByTraderIDResponse);
     rpc GetEligibleBankDetails(GetEligibleBankDetailsRequest) returns (GetEligibleBankDetailsResponse);
+    rpc CreateBank(CreateBankRequest) returns (CreateBankResponse);
+    rpc GetBankByName(GetBankByNameRequest) returns (GetBankByNameResponse);
+    rpc GetBanksByCountry(GetBanksByCountryRequest) returns (GetBanksByCountryResponse);
+    rpc DeleteBankByID (DeleteBankByIDRequest) returns (DeleteBankByIDResponse); 
+    rpc GetBankByID (GetBankByIDRequest) returns (GetBankByIDResponse);
 }
 
 message BankDetail {
@@ -102,4 +107,57 @@ message GetEligibleBankDetailsRequest {
 
 message GetEligibleBankDetailsResponse {
     repeated BankDetail bank_details = 1;
+}
+
+message CreateBankRequest {
+    string bank_name = 1;
+    string userfriendly_name = 2;
+    string country = 3;
+    string sbp_id = 4;
+    string icon_url = 5;
+}
+
+message CreateBankResponse {
+    string id = 1;
+}
+
+message GetBankByNameRequest {
+    string bank_name = 1;
+}
+
+message Bank {
+    string id = 1;
+    string bank_name = 2;
+    string userfriendly_name = 3;
+    string country = 4;
+    string sbp_id = 5;
+    string icon_url = 6;
+}
+
+message GetBankByNameResponse {
+    Bank bank = 1;
+}
+
+message GetBanksByCountryRequest {
+    string country = 1;
+}
+
+message GetBanksByCountryResponse {
+    repeated Bank banks = 1;
+}
+
+message DeleteBankByIDRequest {
+    string bank_id = 1;
+}
+
+message DeleteBankByIDResponse {
+
+}
+
+message GetBankByIDRequest {
+    string bank_id = 1;
+}
+
+message GetBankByIDResponse {
+    Bank bank = 1;
 }

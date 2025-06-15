@@ -25,6 +25,11 @@ const (
 	BankingService_DeleteBankDetail_FullMethodName         = "/banking.BankingService/DeleteBankDetail"
 	BankingService_GetBankDetailsByTraderID_FullMethodName = "/banking.BankingService/GetBankDetailsByTraderID"
 	BankingService_GetEligibleBankDetails_FullMethodName   = "/banking.BankingService/GetEligibleBankDetails"
+	BankingService_CreateBank_FullMethodName               = "/banking.BankingService/CreateBank"
+	BankingService_GetBankByName_FullMethodName            = "/banking.BankingService/GetBankByName"
+	BankingService_GetBanksByCountry_FullMethodName        = "/banking.BankingService/GetBanksByCountry"
+	BankingService_DeleteBankByID_FullMethodName           = "/banking.BankingService/DeleteBankByID"
+	BankingService_GetBankByID_FullMethodName              = "/banking.BankingService/GetBankByID"
 )
 
 // BankingServiceClient is the client API for BankingService service.
@@ -37,6 +42,11 @@ type BankingServiceClient interface {
 	DeleteBankDetail(ctx context.Context, in *DeleteBankDetailRequest, opts ...grpc.CallOption) (*DeleteBankDetailResponse, error)
 	GetBankDetailsByTraderID(ctx context.Context, in *GetBankDetailsByTraderIDRequest, opts ...grpc.CallOption) (*GetBankDetailsByTraderIDResponse, error)
 	GetEligibleBankDetails(ctx context.Context, in *GetEligibleBankDetailsRequest, opts ...grpc.CallOption) (*GetEligibleBankDetailsResponse, error)
+	CreateBank(ctx context.Context, in *CreateBankRequest, opts ...grpc.CallOption) (*CreateBankResponse, error)
+	GetBankByName(ctx context.Context, in *GetBankByNameRequest, opts ...grpc.CallOption) (*GetBankByNameResponse, error)
+	GetBanksByCountry(ctx context.Context, in *GetBanksByCountryRequest, opts ...grpc.CallOption) (*GetBanksByCountryResponse, error)
+	DeleteBankByID(ctx context.Context, in *DeleteBankByIDRequest, opts ...grpc.CallOption) (*DeleteBankByIDResponse, error)
+	GetBankByID(ctx context.Context, in *GetBankByIDRequest, opts ...grpc.CallOption) (*GetBankByIDResponse, error)
 }
 
 type bankingServiceClient struct {
@@ -107,6 +117,56 @@ func (c *bankingServiceClient) GetEligibleBankDetails(ctx context.Context, in *G
 	return out, nil
 }
 
+func (c *bankingServiceClient) CreateBank(ctx context.Context, in *CreateBankRequest, opts ...grpc.CallOption) (*CreateBankResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateBankResponse)
+	err := c.cc.Invoke(ctx, BankingService_CreateBank_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bankingServiceClient) GetBankByName(ctx context.Context, in *GetBankByNameRequest, opts ...grpc.CallOption) (*GetBankByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBankByNameResponse)
+	err := c.cc.Invoke(ctx, BankingService_GetBankByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bankingServiceClient) GetBanksByCountry(ctx context.Context, in *GetBanksByCountryRequest, opts ...grpc.CallOption) (*GetBanksByCountryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBanksByCountryResponse)
+	err := c.cc.Invoke(ctx, BankingService_GetBanksByCountry_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bankingServiceClient) DeleteBankByID(ctx context.Context, in *DeleteBankByIDRequest, opts ...grpc.CallOption) (*DeleteBankByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteBankByIDResponse)
+	err := c.cc.Invoke(ctx, BankingService_DeleteBankByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bankingServiceClient) GetBankByID(ctx context.Context, in *GetBankByIDRequest, opts ...grpc.CallOption) (*GetBankByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBankByIDResponse)
+	err := c.cc.Invoke(ctx, BankingService_GetBankByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BankingServiceServer is the server API for BankingService service.
 // All implementations must embed UnimplementedBankingServiceServer
 // for forward compatibility.
@@ -117,6 +177,11 @@ type BankingServiceServer interface {
 	DeleteBankDetail(context.Context, *DeleteBankDetailRequest) (*DeleteBankDetailResponse, error)
 	GetBankDetailsByTraderID(context.Context, *GetBankDetailsByTraderIDRequest) (*GetBankDetailsByTraderIDResponse, error)
 	GetEligibleBankDetails(context.Context, *GetEligibleBankDetailsRequest) (*GetEligibleBankDetailsResponse, error)
+	CreateBank(context.Context, *CreateBankRequest) (*CreateBankResponse, error)
+	GetBankByName(context.Context, *GetBankByNameRequest) (*GetBankByNameResponse, error)
+	GetBanksByCountry(context.Context, *GetBanksByCountryRequest) (*GetBanksByCountryResponse, error)
+	DeleteBankByID(context.Context, *DeleteBankByIDRequest) (*DeleteBankByIDResponse, error)
+	GetBankByID(context.Context, *GetBankByIDRequest) (*GetBankByIDResponse, error)
 	mustEmbedUnimplementedBankingServiceServer()
 }
 
@@ -144,6 +209,21 @@ func (UnimplementedBankingServiceServer) GetBankDetailsByTraderID(context.Contex
 }
 func (UnimplementedBankingServiceServer) GetEligibleBankDetails(context.Context, *GetEligibleBankDetailsRequest) (*GetEligibleBankDetailsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetEligibleBankDetails not implemented")
+}
+func (UnimplementedBankingServiceServer) CreateBank(context.Context, *CreateBankRequest) (*CreateBankResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBank not implemented")
+}
+func (UnimplementedBankingServiceServer) GetBankByName(context.Context, *GetBankByNameRequest) (*GetBankByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBankByName not implemented")
+}
+func (UnimplementedBankingServiceServer) GetBanksByCountry(context.Context, *GetBanksByCountryRequest) (*GetBanksByCountryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBanksByCountry not implemented")
+}
+func (UnimplementedBankingServiceServer) DeleteBankByID(context.Context, *DeleteBankByIDRequest) (*DeleteBankByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBankByID not implemented")
+}
+func (UnimplementedBankingServiceServer) GetBankByID(context.Context, *GetBankByIDRequest) (*GetBankByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBankByID not implemented")
 }
 func (UnimplementedBankingServiceServer) mustEmbedUnimplementedBankingServiceServer() {}
 func (UnimplementedBankingServiceServer) testEmbeddedByValue()                        {}
@@ -274,6 +354,96 @@ func _BankingService_GetEligibleBankDetails_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BankingService_CreateBank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBankRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BankingServiceServer).CreateBank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BankingService_CreateBank_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BankingServiceServer).CreateBank(ctx, req.(*CreateBankRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BankingService_GetBankByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBankByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BankingServiceServer).GetBankByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BankingService_GetBankByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BankingServiceServer).GetBankByName(ctx, req.(*GetBankByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BankingService_GetBanksByCountry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBanksByCountryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BankingServiceServer).GetBanksByCountry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BankingService_GetBanksByCountry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BankingServiceServer).GetBanksByCountry(ctx, req.(*GetBanksByCountryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BankingService_DeleteBankByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteBankByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BankingServiceServer).DeleteBankByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BankingService_DeleteBankByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BankingServiceServer).DeleteBankByID(ctx, req.(*DeleteBankByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BankingService_GetBankByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBankByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BankingServiceServer).GetBankByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BankingService_GetBankByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BankingServiceServer).GetBankByID(ctx, req.(*GetBankByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BankingService_ServiceDesc is the grpc.ServiceDesc for BankingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -304,6 +474,26 @@ var BankingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetEligibleBankDetails",
 			Handler:    _BankingService_GetEligibleBankDetails_Handler,
+		},
+		{
+			MethodName: "CreateBank",
+			Handler:    _BankingService_CreateBank_Handler,
+		},
+		{
+			MethodName: "GetBankByName",
+			Handler:    _BankingService_GetBankByName_Handler,
+		},
+		{
+			MethodName: "GetBanksByCountry",
+			Handler:    _BankingService_GetBanksByCountry_Handler,
+		},
+		{
+			MethodName: "DeleteBankByID",
+			Handler:    _BankingService_DeleteBankByID_Handler,
+		},
+		{
+			MethodName: "GetBankByID",
+			Handler:    _BankingService_GetBankByID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

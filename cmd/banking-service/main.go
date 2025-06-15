@@ -20,18 +20,20 @@ func main() {
 	// Init database
 	db := postgres.MustInitDB(cfg)
 
-	// Init user repo
+	// Init repo
 	bankDetailRepo, err := postgres.NewDefaultbankDetailRepository(db)
 	if err != nil{
 		log.Fatalf("failed to init user repository: %v\n", err.Error())
 	}
+	bankRepo := postgres.NewDefaultBankRepository(db)
 
-	// Init user usecase
-	uc := usecase.NewDefaultBankDetailUsecase(bankDetailRepo)
+	// Init usecase
+	bankDetailUC := usecase.NewDefaultBankDetailUsecase(bankDetailRepo)
+	bankUc := usecase.NewDefaultBankUsecase(bankRepo)
 
 	// Creating gRPC server
 	grpcServer := grpc.NewServer()
-	bankDetailHandler := grpcapi.NewbankDetailHandler(uc)
+	bankDetailHandler := grpcapi.NewBankingHandler(bankDetailUC, bankUc)
 
 	bankingpb.RegisterBankingServiceServer(grpcServer, bankDetailHandler)
 

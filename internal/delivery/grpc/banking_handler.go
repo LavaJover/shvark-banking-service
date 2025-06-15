@@ -8,16 +8,17 @@ import (
 	"google.golang.org/protobuf/types/known/durationpb"
 )
 
-type BankDetailHandler struct {
+type BankingHandler struct {
 	bankingpb.UnimplementedBankingServiceServer
-	uc domain.BankDetailUsecase
+	bankDetailUC domain.BankDetailUsecase
+	bankUC 		 domain.BankUsecase
 }
 
-func NewbankDetailHandler(uc domain.BankDetailUsecase) *BankDetailHandler {
-	return &BankDetailHandler{uc: uc}
+func NewBankingHandler(bankDetailUC domain.BankDetailUsecase, bankUC domain.BankUsecase) *BankingHandler {
+	return &BankingHandler{bankDetailUC: bankDetailUC, bankUC: bankUC}
 }
 
-func (h *BankDetailHandler) CreateBankDetail(ctx context.Context, r *bankingpb.CreateBankDetailRequest) (*bankingpb.CreateBankDetailResponse, error) {
+func (h *BankingHandler) CreateBankDetail(ctx context.Context, r *bankingpb.CreateBankDetailRequest) (*bankingpb.CreateBankDetailResponse, error) {
 	bankDetail := domain.BankDetail{
 		TraderID: r.TraderId,
 		Country: r.Country,
@@ -38,7 +39,7 @@ func (h *BankDetailHandler) CreateBankDetail(ctx context.Context, r *bankingpb.C
 		MaxQuantityMonth: int32(r.MaxQuantityMonth),
 		DeviceID: r.DeviceId,
 	}
-	bankDetailID, err := h.uc.CreateBankDetail(&bankDetail)
+	bankDetailID, err := h.bankDetailUC.CreateBankDetail(&bankDetail)
 	if err != nil {
 		return nil, err
 	}
@@ -49,9 +50,9 @@ func (h *BankDetailHandler) CreateBankDetail(ctx context.Context, r *bankingpb.C
 	}, nil
 }
 
-func (h *BankDetailHandler) GetBankDetailByID(ctx context.Context, r *bankingpb.GetBankDetailByIDRequest) (*bankingpb.GetBankDetailByIDResponse, error) {
+func (h *BankingHandler) GetBankDetailByID(ctx context.Context, r *bankingpb.GetBankDetailByIDRequest) (*bankingpb.GetBankDetailByIDResponse, error) {
 	bankDetailID := r.BankDetailId
-	response, err := h.uc.GetBankDetailByID(bankDetailID)
+	response, err := h.bankDetailUC.GetBankDetailByID(bankDetailID)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +81,7 @@ func (h *BankDetailHandler) GetBankDetailByID(ctx context.Context, r *bankingpb.
 	}, nil
 }
 
-func (h *BankDetailHandler) UpdateBankDetail(ctx context.Context, r *bankingpb.UpdateBankDetailRequest) (*bankingpb.UpdateBankDetailResponse, error) {
+func (h *BankingHandler) UpdateBankDetail(ctx context.Context, r *bankingpb.UpdateBankDetailRequest) (*bankingpb.UpdateBankDetailResponse, error) {
 	bankDetailUpdate := domain.BankDetail{
 		ID: r.BankDetail.BankDetailId,
 		TraderID: r.BankDetail.TraderId,
@@ -103,7 +104,7 @@ func (h *BankDetailHandler) UpdateBankDetail(ctx context.Context, r *bankingpb.U
 		DeviceID: r.BankDetail.DeviceId,
 	}
 
-	err := h.uc.UpdateBankDetail(&bankDetailUpdate)
+	err := h.bankDetailUC.UpdateBankDetail(&bankDetailUpdate)
 	if err != nil {
 		return nil, err
 	}
@@ -111,9 +112,9 @@ func (h *BankDetailHandler) UpdateBankDetail(ctx context.Context, r *bankingpb.U
 	return &bankingpb.UpdateBankDetailResponse{}, nil
 }
 
-func (h *BankDetailHandler) DeleteBankDetail(ctx context.Context, r *bankingpb.DeleteBankDetailRequest) (*bankingpb.DeleteBankDetailResponse, error) {
+func (h *BankingHandler) DeleteBankDetail(ctx context.Context, r *bankingpb.DeleteBankDetailRequest) (*bankingpb.DeleteBankDetailResponse, error) {
 	bankDetailID := r.BankDetailId
-	response, err := h.uc.DeleteBankDetail(bankDetailID)
+	response, err := h.bankDetailUC.DeleteBankDetail(bankDetailID)
 	if err != nil {
 		return nil, err
 	}
@@ -143,9 +144,9 @@ func (h *BankDetailHandler) DeleteBankDetail(ctx context.Context, r *bankingpb.D
 	}, nil
 }
 
-func (h *BankDetailHandler) GetBankDetailsByTraderID(ctx context.Context, r *bankingpb.GetBankDetailsByTraderIDRequest) (*bankingpb.GetBankDetailsByTraderIDResponse, error) {
+func (h *BankingHandler) GetBankDetailsByTraderID(ctx context.Context, r *bankingpb.GetBankDetailsByTraderIDRequest) (*bankingpb.GetBankDetailsByTraderIDResponse, error) {
 	traderID := r.TraderId
-	bankDetails, err := h.uc.GetBankDetailsByTraderID(traderID)
+	bankDetails, err := h.bankDetailUC.GetBankDetailsByTraderID(traderID)
 	if err != nil {
 		return nil, err
 	}
@@ -181,7 +182,7 @@ func (h *BankDetailHandler) GetBankDetailsByTraderID(ctx context.Context, r *ban
 	}, nil
 }
 
-func (h *BankDetailHandler) GetEligibleBankDetails(ctx context.Context, r *bankingpb.GetEligibleBankDetailsRequest) (*bankingpb.GetEligibleBankDetailsResponse, error) {
+func (h *BankingHandler) GetEligibleBankDetails(ctx context.Context, r *bankingpb.GetEligibleBankDetailsRequest) (*bankingpb.GetEligibleBankDetailsResponse, error) {
 	query := &domain.BankDetailQuery{
 		Amount: float32(r.Amount),
 		Currency: r.Currency,
@@ -189,7 +190,7 @@ func (h *BankDetailHandler) GetEligibleBankDetails(ctx context.Context, r *banki
 		Country: r.Country,
 	}
 
-	bankDetails, err := h.uc.GetEligibleBankDetails(query)
+	bankDetails, err := h.bankDetailUC.GetEligibleBankDetails(query)
 	if err != nil {
 		return nil, err
 	}
@@ -222,5 +223,89 @@ func (h *BankDetailHandler) GetEligibleBankDetails(ctx context.Context, r *banki
 
 	return &bankingpb.GetEligibleBankDetailsResponse{
 		BankDetails: bankDetailsResponse,
+	}, nil
+}
+
+func (h *BankingHandler) CreateBank(ctx context.Context, r *bankingpb.CreateBankRequest) (*bankingpb.CreateBankResponse, error) {
+	bank := domain.Bank{
+		BankName: r.BankName,
+		UserfriendlyName: r.UserfriendlyName,
+		Country: r.Country,
+		SBP_ID: r.SbpId,
+		IconUrl: r.IconUrl,
+	}
+	if err := h.bankUC.CreateBank(&bank); err != nil {
+		return nil, err
+	}
+
+	return &bankingpb.CreateBankResponse{
+		Id: bank.ID,
+	}, nil
+}
+
+func (h *BankingHandler) GetBankByName(ctx context.Context, r *bankingpb.GetBankByNameRequest) (*bankingpb.GetBankByNameResponse, error) {
+	bankName := r.BankName
+	bank, err := h.bankUC.GetBankByName(bankName)
+	if err != nil {
+		return nil, err
+	}
+	return &bankingpb.GetBankByNameResponse{
+		Bank: &bankingpb.Bank{
+			Id: bank.ID,
+			BankName: bank.BankName,
+			UserfriendlyName: bank.UserfriendlyName,
+			Country: bank.Country,
+			SbpId: bank.SBP_ID,
+			IconUrl: bank.IconUrl,
+		},
+	}, nil
+}
+
+func (h *BankingHandler) GetBankByID(ctx context.Context, r *bankingpb.GetBankByIDRequest) (*bankingpb.GetBankByIDResponse, error) {
+	bankID := r.BankId
+	bank, err := h.bankUC.GetBankByID(bankID)
+	if err != nil {
+		return nil, err
+	}
+	return &bankingpb.GetBankByIDResponse{
+		Bank: &bankingpb.Bank{
+			Id: bank.ID,
+			BankName: bank.BankName,
+			UserfriendlyName: bank.UserfriendlyName,
+			Country: bank.Country,
+			SbpId: bank.SBP_ID,
+			IconUrl: bank.IconUrl,
+		},
+	}, nil
+}
+
+func (h *BankingHandler) DeleteBankByID(ctx context.Context, r *bankingpb.DeleteBankByIDRequest) (*bankingpb.DeleteBankByIDResponse, error) {
+	bankID := r.BankId
+	if err := h.bankUC.DeleteBankByID(bankID); err != nil {
+		return nil, err
+	}
+	return &bankingpb.DeleteBankByIDResponse{}, nil
+}
+
+func (h *BankingHandler) GetBanksByCountry(ctx context.Context, r *bankingpb.GetBanksByCountryRequest) (*bankingpb.GetBanksByCountryResponse, error) {
+	country := r.Country
+	banks, err := h.bankUC.GetBanksByCountry(country)
+	if err != nil {
+		return nil, err
+	}
+	respBanks := make([]*bankingpb.Bank, len(banks))
+	for i, bank := range banks {
+		respBanks[i] = &bankingpb.Bank{
+			Id: bank.ID,
+			BankName: bank.BankName,
+			UserfriendlyName: bank.UserfriendlyName,
+			Country: bank.Country,
+			SbpId: bank.SBP_ID,
+			IconUrl: bank.IconUrl,
+		}
+	}
+
+	return &bankingpb.GetBanksByCountryResponse{
+		Banks: respBanks,
 	}, nil
 }
