@@ -7,6 +7,7 @@ type BankDetail struct {
 	TraderID 				string
 	Country 				string
 	Currency 				string
+	InflowCurrency			string
 	MinAmount 				float32
 	MaxAmount 				float32
 	BankName 				string

@@ -37,6 +37,7 @@ func (r *DefaultBankDetailRepository) CreateBankDetail(bankDetail *domain.BankDe
 		MaxQuantityDay: bankDetail.MaxQuantityDay,
 		MaxQuantityMonth: bankDetail.MaxAmountMonth,
 		DeviceID: bankDetail.DeviceID,
+		InflowCurrency: bankDetail.InflowCurrency,
 	}
 	if err := r.DB.Create(&bankDetailModel).Error; err != nil {
 		return "", err
@@ -80,6 +81,7 @@ func (r *DefaultBankDetailRepository) DeleteBankDetail(bankDetailID string) (*do
 		MaxQuantityDay: bankDetailModel.MaxQuantityDay,
 		MaxQuantityMonth: bankDetailModel.MaxQuantityMonth,
 		DeviceID: bankDetailModel.DeviceID,
+		InflowCurrency: bankDetailModel.InflowCurrency,
 	}, nil
 
 }
@@ -105,6 +107,7 @@ func (r *DefaultBankDetailRepository) UpdateBankDetail(bankDetail *domain.BankDe
 		MaxQuantityDay: bankDetail.MaxQuantityDay,
 		MaxQuantityMonth: bankDetail.MaxAmountMonth,
 		DeviceID: bankDetail.DeviceID,
+		InflowCurrency: bankDetail.InflowCurrency,
 	}
 
 	if err := r.DB.Updates(&modelToUpdate).Error; err != nil {
@@ -144,6 +147,7 @@ func (r *DefaultBankDetailRepository) GetBankDetailByID(bankDetailID string) (*d
 		MaxQuantityDay: bankDetailModel.MaxQuantityDay,
 		MaxQuantityMonth: bankDetailModel.MaxQuantityMonth,
 		DeviceID: bankDetailModel.DeviceID,
+		InflowCurrency: bankDetailModel.InflowCurrency,
 	}, nil
 }
 
@@ -176,6 +180,7 @@ func (r *DefaultBankDetailRepository) GetBankDetailsByTraderID(traderID string) 
 			MaxQuantityDay: bankDetailModel.MaxQuantityDay,
 			MaxQuantityMonth: bankDetailModel.MaxQuantityMonth,
 			DeviceID: bankDetailModel.DeviceID,
+			InflowCurrency: bankDetailModel.InflowCurrency,
 		}
 	}
 
@@ -216,6 +221,7 @@ func (r *DefaultBankDetailRepository) GetEligibleBankDetails(query *domain.BankD
 			MaxQuantityDay: bankDetailModel.MaxQuantityDay,
 			MaxQuantityMonth: bankDetailModel.MaxQuantityMonth,
 			DeviceID: bankDetailModel.DeviceID,
+			InflowCurrency: bankDetailModel.InflowCurrency,
 		}
 	}
 

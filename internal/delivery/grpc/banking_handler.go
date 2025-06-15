@@ -38,6 +38,7 @@ func (h *BankingHandler) CreateBankDetail(ctx context.Context, r *bankingpb.Crea
 		MaxQuantityDay: int32(r.MaxQuantityDay),
 		MaxQuantityMonth: int32(r.MaxQuantityMonth),
 		DeviceID: r.DeviceId,
+		InflowCurrency: r.InflowCurrency,
 	}
 	bankDetailID, err := h.bankDetailUC.CreateBankDetail(&bankDetail)
 	if err != nil {
@@ -77,6 +78,7 @@ func (h *BankingHandler) GetBankDetailByID(ctx context.Context, r *bankingpb.Get
 			MaxQuantityDay: float64(response.MaxQuantityDay),
 			MaxQuantityMonth: float64(response.MaxAmountMonth),
 			DeviceId: response.DeviceID,
+			InflowCurrency: response.InflowCurrency,
 		},
 	}, nil
 }
@@ -102,6 +104,7 @@ func (h *BankingHandler) UpdateBankDetail(ctx context.Context, r *bankingpb.Upda
 		MaxQuantityDay: int32(r.BankDetail.MaxQuantityDay),
 		MaxQuantityMonth: int32(r.BankDetail.MaxQuantityMonth),
 		DeviceID: r.BankDetail.DeviceId,
+		InflowCurrency: r.BankDetail.InflowCurrency,
 	}
 
 	err := h.bankDetailUC.UpdateBankDetail(&bankDetailUpdate)
@@ -140,6 +143,7 @@ func (h *BankingHandler) DeleteBankDetail(ctx context.Context, r *bankingpb.Dele
 			MaxQuantityDay: float64(response.MaxQuantityDay),
 			MaxQuantityMonth: float64(response.MaxQuantityMonth),
 			DeviceId: response.DeviceID,
+			InflowCurrency: response.InflowCurrency,
 		},
 	}, nil
 }
@@ -174,6 +178,7 @@ func (h *BankingHandler) GetBankDetailsByTraderID(ctx context.Context, r *bankin
 			MaxQuantityDay: float64(bankDetail.MaxQuantityDay),
 			MaxQuantityMonth: float64(bankDetail.MaxQuantityMonth),
 			DeviceId: bankDetail.DeviceID,
+			InflowCurrency: bankDetail.InflowCurrency,
 		}
 	}
 
@@ -218,6 +223,7 @@ func (h *BankingHandler) GetEligibleBankDetails(ctx context.Context, r *bankingp
 			MaxQuantityDay: float64(bankDetail.MaxQuantityDay),
 			MaxQuantityMonth: float64(bankDetail.MaxQuantityMonth),
 			DeviceId: bankDetail.DeviceID,
+			InflowCurrency: bankDetail.InflowCurrency,
 		}
 	}
 
