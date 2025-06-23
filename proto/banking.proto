@@ -18,6 +18,8 @@ service BankingService {
     rpc GetBanksByCountry(GetBanksByCountryRequest) returns (GetBanksByCountryResponse);
     rpc DeleteBankByID (DeleteBankByIDRequest) returns (DeleteBankByIDResponse); 
     rpc GetBankByID (GetBankByIDRequest) returns (GetBankByIDResponse);
+
+    
 }
 
 message BankDetail {
