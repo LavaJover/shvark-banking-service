@@ -22,6 +22,230 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Pagination struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CurrentPage   int64                  `protobuf:"varint,1,opt,name=current_page,json=currentPage,proto3" json:"current_page,omitempty"`
+	TotalPages    int64                  `protobuf:"varint,2,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
+	TotalItems    int64                  `protobuf:"varint,3,opt,name=total_items,json=totalItems,proto3" json:"total_items,omitempty"`
+	ItemsPerPage  int64                  `protobuf:"varint,4,opt,name=items_per_page,json=itemsPerPage,proto3" json:"items_per_page,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Pagination) Reset() {
+	*x = Pagination{}
+	mi := &file_banking_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Pagination) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Pagination) ProtoMessage() {}
+
+func (x *Pagination) ProtoReflect() protoreflect.Message {
+	mi := &file_banking_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Pagination.ProtoReflect.Descriptor instead.
+func (*Pagination) Descriptor() ([]byte, []int) {
+	return file_banking_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Pagination) GetCurrentPage() int64 {
+	if x != nil {
+		return x.CurrentPage
+	}
+	return 0
+}
+
+func (x *Pagination) GetTotalPages() int64 {
+	if x != nil {
+		return x.TotalPages
+	}
+	return 0
+}
+
+func (x *Pagination) GetTotalItems() int64 {
+	if x != nil {
+		return x.TotalItems
+	}
+	return 0
+}
+
+func (x *Pagination) GetItemsPerPage() int64 {
+	if x != nil {
+		return x.ItemsPerPage
+	}
+	return 0
+}
+
+type BankDetailStatistics struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	BankDetail    *BankDetail            `protobuf:"bytes,1,opt,name=bank_detail,json=bankDetail,proto3" json:"bank_detail,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BankDetailStatistics) Reset() {
+	*x = BankDetailStatistics{}
+	mi := &file_banking_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BankDetailStatistics) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BankDetailStatistics) ProtoMessage() {}
+
+func (x *BankDetailStatistics) ProtoReflect() protoreflect.Message {
+	mi := &file_banking_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BankDetailStatistics.ProtoReflect.Descriptor instead.
+func (*BankDetailStatistics) Descriptor() ([]byte, []int) {
+	return file_banking_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *BankDetailStatistics) GetBankDetail() *BankDetail {
+	if x != nil {
+		return x.BankDetail
+	}
+	return nil
+}
+
+type GetBankDetailsStatisticsByTraderIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TraderId      string                 `protobuf:"bytes,1,opt,name=trader_id,json=traderId,proto3" json:"trader_id,omitempty"`
+	Page          int64                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Limit         int64                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBankDetailsStatisticsByTraderIDRequest) Reset() {
+	*x = GetBankDetailsStatisticsByTraderIDRequest{}
+	mi := &file_banking_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBankDetailsStatisticsByTraderIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBankDetailsStatisticsByTraderIDRequest) ProtoMessage() {}
+
+func (x *GetBankDetailsStatisticsByTraderIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_banking_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBankDetailsStatisticsByTraderIDRequest.ProtoReflect.Descriptor instead.
+func (*GetBankDetailsStatisticsByTraderIDRequest) Descriptor() ([]byte, []int) {
+	return file_banking_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetBankDetailsStatisticsByTraderIDRequest) GetTraderId() string {
+	if x != nil {
+		return x.TraderId
+	}
+	return ""
+}
+
+func (x *GetBankDetailsStatisticsByTraderIDRequest) GetPage() int64 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetBankDetailsStatisticsByTraderIDRequest) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+type GetBankDetailsStatisticsByTraderIDResponse struct {
+	state                protoimpl.MessageState  `protogen:"open.v1"`
+	BankDetailStatistics []*BankDetailStatistics `protobuf:"bytes,1,rep,name=bank_detail_statistics,json=bankDetailStatistics,proto3" json:"bank_detail_statistics,omitempty"`
+	Pagination           *Pagination             `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *GetBankDetailsStatisticsByTraderIDResponse) Reset() {
+	*x = GetBankDetailsStatisticsByTraderIDResponse{}
+	mi := &file_banking_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBankDetailsStatisticsByTraderIDResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBankDetailsStatisticsByTraderIDResponse) ProtoMessage() {}
+
+func (x *GetBankDetailsStatisticsByTraderIDResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_banking_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBankDetailsStatisticsByTraderIDResponse.ProtoReflect.Descriptor instead.
+func (*GetBankDetailsStatisticsByTraderIDResponse) Descriptor() ([]byte, []int) {
+	return file_banking_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetBankDetailsStatisticsByTraderIDResponse) GetBankDetailStatistics() []*BankDetailStatistics {
+	if x != nil {
+		return x.BankDetailStatistics
+	}
+	return nil
+}
+
+func (x *GetBankDetailsStatisticsByTraderIDResponse) GetPagination() *Pagination {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
 type BankDetail struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
 	BankDetailId           string                 `protobuf:"bytes,1,opt,name=bank_detail_id,json=bankDetailId,proto3" json:"bank_detail_id,omitempty"`
@@ -50,7 +274,7 @@ type BankDetail struct {
 
 func (x *BankDetail) Reset() {
 	*x = BankDetail{}
-	mi := &file_banking_proto_msgTypes[0]
+	mi := &file_banking_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -62,7 +286,7 @@ func (x *BankDetail) String() string {
 func (*BankDetail) ProtoMessage() {}
 
 func (x *BankDetail) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[0]
+	mi := &file_banking_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -75,7 +299,7 @@ func (x *BankDetail) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BankDetail.ProtoReflect.Descriptor instead.
 func (*BankDetail) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{0}
+	return file_banking_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *BankDetail) GetBankDetailId() string {
@@ -245,7 +469,7 @@ type CreateBankDetailRequest struct {
 
 func (x *CreateBankDetailRequest) Reset() {
 	*x = CreateBankDetailRequest{}
-	mi := &file_banking_proto_msgTypes[1]
+	mi := &file_banking_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -257,7 +481,7 @@ func (x *CreateBankDetailRequest) String() string {
 func (*CreateBankDetailRequest) ProtoMessage() {}
 
 func (x *CreateBankDetailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[1]
+	mi := &file_banking_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -270,7 +494,7 @@ func (x *CreateBankDetailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBankDetailRequest.ProtoReflect.Descriptor instead.
 func (*CreateBankDetailRequest) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{1}
+	return file_banking_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CreateBankDetailRequest) GetTraderId() string {
@@ -416,7 +640,7 @@ type CreateBankDetailResponse struct {
 
 func (x *CreateBankDetailResponse) Reset() {
 	*x = CreateBankDetailResponse{}
-	mi := &file_banking_proto_msgTypes[2]
+	mi := &file_banking_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -428,7 +652,7 @@ func (x *CreateBankDetailResponse) String() string {
 func (*CreateBankDetailResponse) ProtoMessage() {}
 
 func (x *CreateBankDetailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[2]
+	mi := &file_banking_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -441,7 +665,7 @@ func (x *CreateBankDetailResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBankDetailResponse.ProtoReflect.Descriptor instead.
 func (*CreateBankDetailResponse) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{2}
+	return file_banking_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *CreateBankDetailResponse) GetBankDetailId() string {
@@ -467,7 +691,7 @@ type GetBankDetailByIDRequest struct {
 
 func (x *GetBankDetailByIDRequest) Reset() {
 	*x = GetBankDetailByIDRequest{}
-	mi := &file_banking_proto_msgTypes[3]
+	mi := &file_banking_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -479,7 +703,7 @@ func (x *GetBankDetailByIDRequest) String() string {
 func (*GetBankDetailByIDRequest) ProtoMessage() {}
 
 func (x *GetBankDetailByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[3]
+	mi := &file_banking_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -492,7 +716,7 @@ func (x *GetBankDetailByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBankDetailByIDRequest.ProtoReflect.Descriptor instead.
 func (*GetBankDetailByIDRequest) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{3}
+	return file_banking_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetBankDetailByIDRequest) GetBankDetailId() string {
@@ -511,7 +735,7 @@ type GetBankDetailByIDResponse struct {
 
 func (x *GetBankDetailByIDResponse) Reset() {
 	*x = GetBankDetailByIDResponse{}
-	mi := &file_banking_proto_msgTypes[4]
+	mi := &file_banking_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -523,7 +747,7 @@ func (x *GetBankDetailByIDResponse) String() string {
 func (*GetBankDetailByIDResponse) ProtoMessage() {}
 
 func (x *GetBankDetailByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[4]
+	mi := &file_banking_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -536,7 +760,7 @@ func (x *GetBankDetailByIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBankDetailByIDResponse.ProtoReflect.Descriptor instead.
 func (*GetBankDetailByIDResponse) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{4}
+	return file_banking_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetBankDetailByIDResponse) GetBankDetail() *BankDetail {
@@ -555,7 +779,7 @@ type UpdateBankDetailRequest struct {
 
 func (x *UpdateBankDetailRequest) Reset() {
 	*x = UpdateBankDetailRequest{}
-	mi := &file_banking_proto_msgTypes[5]
+	mi := &file_banking_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -567,7 +791,7 @@ func (x *UpdateBankDetailRequest) String() string {
 func (*UpdateBankDetailRequest) ProtoMessage() {}
 
 func (x *UpdateBankDetailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[5]
+	mi := &file_banking_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -580,7 +804,7 @@ func (x *UpdateBankDetailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateBankDetailRequest.ProtoReflect.Descriptor instead.
 func (*UpdateBankDetailRequest) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{5}
+	return file_banking_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UpdateBankDetailRequest) GetBankDetail() *BankDetail {
@@ -598,7 +822,7 @@ type UpdateBankDetailResponse struct {
 
 func (x *UpdateBankDetailResponse) Reset() {
 	*x = UpdateBankDetailResponse{}
-	mi := &file_banking_proto_msgTypes[6]
+	mi := &file_banking_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -610,7 +834,7 @@ func (x *UpdateBankDetailResponse) String() string {
 func (*UpdateBankDetailResponse) ProtoMessage() {}
 
 func (x *UpdateBankDetailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[6]
+	mi := &file_banking_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -623,7 +847,7 @@ func (x *UpdateBankDetailResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateBankDetailResponse.ProtoReflect.Descriptor instead.
 func (*UpdateBankDetailResponse) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{6}
+	return file_banking_proto_rawDescGZIP(), []int{10}
 }
 
 type DeleteBankDetailRequest struct {
@@ -635,7 +859,7 @@ type DeleteBankDetailRequest struct {
 
 func (x *DeleteBankDetailRequest) Reset() {
 	*x = DeleteBankDetailRequest{}
-	mi := &file_banking_proto_msgTypes[7]
+	mi := &file_banking_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -647,7 +871,7 @@ func (x *DeleteBankDetailRequest) String() string {
 func (*DeleteBankDetailRequest) ProtoMessage() {}
 
 func (x *DeleteBankDetailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[7]
+	mi := &file_banking_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -660,7 +884,7 @@ func (x *DeleteBankDetailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBankDetailRequest.ProtoReflect.Descriptor instead.
 func (*DeleteBankDetailRequest) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{7}
+	return file_banking_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DeleteBankDetailRequest) GetBankDetailId() string {
@@ -679,7 +903,7 @@ type DeleteBankDetailResponse struct {
 
 func (x *DeleteBankDetailResponse) Reset() {
 	*x = DeleteBankDetailResponse{}
-	mi := &file_banking_proto_msgTypes[8]
+	mi := &file_banking_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -691,7 +915,7 @@ func (x *DeleteBankDetailResponse) String() string {
 func (*DeleteBankDetailResponse) ProtoMessage() {}
 
 func (x *DeleteBankDetailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[8]
+	mi := &file_banking_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -704,7 +928,7 @@ func (x *DeleteBankDetailResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBankDetailResponse.ProtoReflect.Descriptor instead.
 func (*DeleteBankDetailResponse) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{8}
+	return file_banking_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *DeleteBankDetailResponse) GetBankDetail() *BankDetail {
@@ -723,7 +947,7 @@ type GetBankDetailsByTraderIDRequest struct {
 
 func (x *GetBankDetailsByTraderIDRequest) Reset() {
 	*x = GetBankDetailsByTraderIDRequest{}
-	mi := &file_banking_proto_msgTypes[9]
+	mi := &file_banking_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -735,7 +959,7 @@ func (x *GetBankDetailsByTraderIDRequest) String() string {
 func (*GetBankDetailsByTraderIDRequest) ProtoMessage() {}
 
 func (x *GetBankDetailsByTraderIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[9]
+	mi := &file_banking_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -748,7 +972,7 @@ func (x *GetBankDetailsByTraderIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBankDetailsByTraderIDRequest.ProtoReflect.Descriptor instead.
 func (*GetBankDetailsByTraderIDRequest) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{9}
+	return file_banking_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GetBankDetailsByTraderIDRequest) GetTraderId() string {
@@ -767,7 +991,7 @@ type GetBankDetailsByTraderIDResponse struct {
 
 func (x *GetBankDetailsByTraderIDResponse) Reset() {
 	*x = GetBankDetailsByTraderIDResponse{}
-	mi := &file_banking_proto_msgTypes[10]
+	mi := &file_banking_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -779,7 +1003,7 @@ func (x *GetBankDetailsByTraderIDResponse) String() string {
 func (*GetBankDetailsByTraderIDResponse) ProtoMessage() {}
 
 func (x *GetBankDetailsByTraderIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[10]
+	mi := &file_banking_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -792,7 +1016,7 @@ func (x *GetBankDetailsByTraderIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBankDetailsByTraderIDResponse.ProtoReflect.Descriptor instead.
 func (*GetBankDetailsByTraderIDResponse) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{10}
+	return file_banking_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GetBankDetailsByTraderIDResponse) GetBankDetails() []*BankDetail {
@@ -814,7 +1038,7 @@ type GetEligibleBankDetailsRequest struct {
 
 func (x *GetEligibleBankDetailsRequest) Reset() {
 	*x = GetEligibleBankDetailsRequest{}
-	mi := &file_banking_proto_msgTypes[11]
+	mi := &file_banking_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -826,7 +1050,7 @@ func (x *GetEligibleBankDetailsRequest) String() string {
 func (*GetEligibleBankDetailsRequest) ProtoMessage() {}
 
 func (x *GetEligibleBankDetailsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[11]
+	mi := &file_banking_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -839,7 +1063,7 @@ func (x *GetEligibleBankDetailsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetEligibleBankDetailsRequest.ProtoReflect.Descriptor instead.
 func (*GetEligibleBankDetailsRequest) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{11}
+	return file_banking_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetEligibleBankDetailsRequest) GetCurrency() string {
@@ -879,7 +1103,7 @@ type GetEligibleBankDetailsResponse struct {
 
 func (x *GetEligibleBankDetailsResponse) Reset() {
 	*x = GetEligibleBankDetailsResponse{}
-	mi := &file_banking_proto_msgTypes[12]
+	mi := &file_banking_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -891,7 +1115,7 @@ func (x *GetEligibleBankDetailsResponse) String() string {
 func (*GetEligibleBankDetailsResponse) ProtoMessage() {}
 
 func (x *GetEligibleBankDetailsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[12]
+	mi := &file_banking_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -904,7 +1128,7 @@ func (x *GetEligibleBankDetailsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetEligibleBankDetailsResponse.ProtoReflect.Descriptor instead.
 func (*GetEligibleBankDetailsResponse) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{12}
+	return file_banking_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetEligibleBankDetailsResponse) GetBankDetails() []*BankDetail {
@@ -927,7 +1151,7 @@ type CreateBankRequest struct {
 
 func (x *CreateBankRequest) Reset() {
 	*x = CreateBankRequest{}
-	mi := &file_banking_proto_msgTypes[13]
+	mi := &file_banking_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -939,7 +1163,7 @@ func (x *CreateBankRequest) String() string {
 func (*CreateBankRequest) ProtoMessage() {}
 
 func (x *CreateBankRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[13]
+	mi := &file_banking_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -952,7 +1176,7 @@ func (x *CreateBankRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBankRequest.ProtoReflect.Descriptor instead.
 func (*CreateBankRequest) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{13}
+	return file_banking_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *CreateBankRequest) GetBankName() string {
@@ -999,7 +1223,7 @@ type CreateBankResponse struct {
 
 func (x *CreateBankResponse) Reset() {
 	*x = CreateBankResponse{}
-	mi := &file_banking_proto_msgTypes[14]
+	mi := &file_banking_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1011,7 +1235,7 @@ func (x *CreateBankResponse) String() string {
 func (*CreateBankResponse) ProtoMessage() {}
 
 func (x *CreateBankResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[14]
+	mi := &file_banking_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1024,7 +1248,7 @@ func (x *CreateBankResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBankResponse.ProtoReflect.Descriptor instead.
 func (*CreateBankResponse) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{14}
+	return file_banking_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *CreateBankResponse) GetId() string {
@@ -1043,7 +1267,7 @@ type GetBankByNameRequest struct {
 
 func (x *GetBankByNameRequest) Reset() {
 	*x = GetBankByNameRequest{}
-	mi := &file_banking_proto_msgTypes[15]
+	mi := &file_banking_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1055,7 +1279,7 @@ func (x *GetBankByNameRequest) String() string {
 func (*GetBankByNameRequest) ProtoMessage() {}
 
 func (x *GetBankByNameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[15]
+	mi := &file_banking_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1068,7 +1292,7 @@ func (x *GetBankByNameRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBankByNameRequest.ProtoReflect.Descriptor instead.
 func (*GetBankByNameRequest) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{15}
+	return file_banking_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetBankByNameRequest) GetBankName() string {
@@ -1092,7 +1316,7 @@ type Bank struct {
 
 func (x *Bank) Reset() {
 	*x = Bank{}
-	mi := &file_banking_proto_msgTypes[16]
+	mi := &file_banking_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1104,7 +1328,7 @@ func (x *Bank) String() string {
 func (*Bank) ProtoMessage() {}
 
 func (x *Bank) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[16]
+	mi := &file_banking_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1117,7 +1341,7 @@ func (x *Bank) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Bank.ProtoReflect.Descriptor instead.
 func (*Bank) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{16}
+	return file_banking_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *Bank) GetId() string {
@@ -1171,7 +1395,7 @@ type GetBankByNameResponse struct {
 
 func (x *GetBankByNameResponse) Reset() {
 	*x = GetBankByNameResponse{}
-	mi := &file_banking_proto_msgTypes[17]
+	mi := &file_banking_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1183,7 +1407,7 @@ func (x *GetBankByNameResponse) String() string {
 func (*GetBankByNameResponse) ProtoMessage() {}
 
 func (x *GetBankByNameResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[17]
+	mi := &file_banking_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1196,7 +1420,7 @@ func (x *GetBankByNameResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBankByNameResponse.ProtoReflect.Descriptor instead.
 func (*GetBankByNameResponse) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{17}
+	return file_banking_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetBankByNameResponse) GetBank() *Bank {
@@ -1215,7 +1439,7 @@ type GetBanksByCountryRequest struct {
 
 func (x *GetBanksByCountryRequest) Reset() {
 	*x = GetBanksByCountryRequest{}
-	mi := &file_banking_proto_msgTypes[18]
+	mi := &file_banking_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1227,7 +1451,7 @@ func (x *GetBanksByCountryRequest) String() string {
 func (*GetBanksByCountryRequest) ProtoMessage() {}
 
 func (x *GetBanksByCountryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[18]
+	mi := &file_banking_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1240,7 +1464,7 @@ func (x *GetBanksByCountryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBanksByCountryRequest.ProtoReflect.Descriptor instead.
 func (*GetBanksByCountryRequest) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{18}
+	return file_banking_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *GetBanksByCountryRequest) GetCountry() string {
@@ -1259,7 +1483,7 @@ type GetBanksByCountryResponse struct {
 
 func (x *GetBanksByCountryResponse) Reset() {
 	*x = GetBanksByCountryResponse{}
-	mi := &file_banking_proto_msgTypes[19]
+	mi := &file_banking_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1271,7 +1495,7 @@ func (x *GetBanksByCountryResponse) String() string {
 func (*GetBanksByCountryResponse) ProtoMessage() {}
 
 func (x *GetBanksByCountryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[19]
+	mi := &file_banking_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1284,7 +1508,7 @@ func (x *GetBanksByCountryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBanksByCountryResponse.ProtoReflect.Descriptor instead.
 func (*GetBanksByCountryResponse) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{19}
+	return file_banking_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *GetBanksByCountryResponse) GetBanks() []*Bank {
@@ -1303,7 +1527,7 @@ type DeleteBankByIDRequest struct {
 
 func (x *DeleteBankByIDRequest) Reset() {
 	*x = DeleteBankByIDRequest{}
-	mi := &file_banking_proto_msgTypes[20]
+	mi := &file_banking_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1315,7 +1539,7 @@ func (x *DeleteBankByIDRequest) String() string {
 func (*DeleteBankByIDRequest) ProtoMessage() {}
 
 func (x *DeleteBankByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[20]
+	mi := &file_banking_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1328,7 +1552,7 @@ func (x *DeleteBankByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBankByIDRequest.ProtoReflect.Descriptor instead.
 func (*DeleteBankByIDRequest) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{20}
+	return file_banking_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *DeleteBankByIDRequest) GetBankId() string {
@@ -1346,7 +1570,7 @@ type DeleteBankByIDResponse struct {
 
 func (x *DeleteBankByIDResponse) Reset() {
 	*x = DeleteBankByIDResponse{}
-	mi := &file_banking_proto_msgTypes[21]
+	mi := &file_banking_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1358,7 +1582,7 @@ func (x *DeleteBankByIDResponse) String() string {
 func (*DeleteBankByIDResponse) ProtoMessage() {}
 
 func (x *DeleteBankByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[21]
+	mi := &file_banking_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1371,7 +1595,7 @@ func (x *DeleteBankByIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBankByIDResponse.ProtoReflect.Descriptor instead.
 func (*DeleteBankByIDResponse) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{21}
+	return file_banking_proto_rawDescGZIP(), []int{25}
 }
 
 type GetBankByIDRequest struct {
@@ -1383,7 +1607,7 @@ type GetBankByIDRequest struct {
 
 func (x *GetBankByIDRequest) Reset() {
 	*x = GetBankByIDRequest{}
-	mi := &file_banking_proto_msgTypes[22]
+	mi := &file_banking_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1395,7 +1619,7 @@ func (x *GetBankByIDRequest) String() string {
 func (*GetBankByIDRequest) ProtoMessage() {}
 
 func (x *GetBankByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[22]
+	mi := &file_banking_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1408,7 +1632,7 @@ func (x *GetBankByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBankByIDRequest.ProtoReflect.Descriptor instead.
 func (*GetBankByIDRequest) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{22}
+	return file_banking_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *GetBankByIDRequest) GetBankId() string {
@@ -1427,7 +1651,7 @@ type GetBankByIDResponse struct {
 
 func (x *GetBankByIDResponse) Reset() {
 	*x = GetBankByIDResponse{}
-	mi := &file_banking_proto_msgTypes[23]
+	mi := &file_banking_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1439,7 +1663,7 @@ func (x *GetBankByIDResponse) String() string {
 func (*GetBankByIDResponse) ProtoMessage() {}
 
 func (x *GetBankByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_banking_proto_msgTypes[23]
+	mi := &file_banking_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1452,7 +1676,7 @@ func (x *GetBankByIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBankByIDResponse.ProtoReflect.Descriptor instead.
 func (*GetBankByIDResponse) Descriptor() ([]byte, []int) {
-	return file_banking_proto_rawDescGZIP(), []int{23}
+	return file_banking_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *GetBankByIDResponse) GetBank() *Bank {
@@ -1462,11 +1686,233 @@ func (x *GetBankByIDResponse) GetBank() *Bank {
 	return nil
 }
 
+type BankDetailStatistics_Statistics struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	ActiveOrders    int64                  `protobuf:"varint,1,opt,name=active_orders,json=activeOrders,proto3" json:"active_orders,omitempty"`
+	ActiveOrdersSum float32                `protobuf:"fixed32,2,opt,name=active_orders_sum,json=activeOrdersSum,proto3" json:"active_orders_sum,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *BankDetailStatistics_Statistics) Reset() {
+	*x = BankDetailStatistics_Statistics{}
+	mi := &file_banking_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BankDetailStatistics_Statistics) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BankDetailStatistics_Statistics) ProtoMessage() {}
+
+func (x *BankDetailStatistics_Statistics) ProtoReflect() protoreflect.Message {
+	mi := &file_banking_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BankDetailStatistics_Statistics.ProtoReflect.Descriptor instead.
+func (*BankDetailStatistics_Statistics) Descriptor() ([]byte, []int) {
+	return file_banking_proto_rawDescGZIP(), []int{1, 0}
+}
+
+func (x *BankDetailStatistics_Statistics) GetActiveOrders() int64 {
+	if x != nil {
+		return x.ActiveOrders
+	}
+	return 0
+}
+
+func (x *BankDetailStatistics_Statistics) GetActiveOrdersSum() float32 {
+	if x != nil {
+		return x.ActiveOrdersSum
+	}
+	return 0
+}
+
+type BankDetailStatistics_Statistics_Today struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	SucceedOrders     int64                  `protobuf:"varint,1,opt,name=succeed_orders,json=succeedOrders,proto3" json:"succeed_orders,omitempty"`
+	CanceledOrders    int64                  `protobuf:"varint,2,opt,name=canceled_orders,json=canceledOrders,proto3" json:"canceled_orders,omitempty"`
+	SucceedOrdersSum  float32                `protobuf:"fixed32,3,opt,name=succeed_orders_sum,json=succeedOrdersSum,proto3" json:"succeed_orders_sum,omitempty"`
+	CanceledOrdersSum float32                `protobuf:"fixed32,4,opt,name=canceled_orders_sum,json=canceledOrdersSum,proto3" json:"canceled_orders_sum,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *BankDetailStatistics_Statistics_Today) Reset() {
+	*x = BankDetailStatistics_Statistics_Today{}
+	mi := &file_banking_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BankDetailStatistics_Statistics_Today) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BankDetailStatistics_Statistics_Today) ProtoMessage() {}
+
+func (x *BankDetailStatistics_Statistics_Today) ProtoReflect() protoreflect.Message {
+	mi := &file_banking_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BankDetailStatistics_Statistics_Today.ProtoReflect.Descriptor instead.
+func (*BankDetailStatistics_Statistics_Today) Descriptor() ([]byte, []int) {
+	return file_banking_proto_rawDescGZIP(), []int{1, 0, 0}
+}
+
+func (x *BankDetailStatistics_Statistics_Today) GetSucceedOrders() int64 {
+	if x != nil {
+		return x.SucceedOrders
+	}
+	return 0
+}
+
+func (x *BankDetailStatistics_Statistics_Today) GetCanceledOrders() int64 {
+	if x != nil {
+		return x.CanceledOrders
+	}
+	return 0
+}
+
+func (x *BankDetailStatistics_Statistics_Today) GetSucceedOrdersSum() float32 {
+	if x != nil {
+		return x.SucceedOrdersSum
+	}
+	return 0
+}
+
+func (x *BankDetailStatistics_Statistics_Today) GetCanceledOrdersSum() float32 {
+	if x != nil {
+		return x.CanceledOrdersSum
+	}
+	return 0
+}
+
+type BankDetailStatistics_Statistics_Month struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	SucceedOrders     int64                  `protobuf:"varint,1,opt,name=succeed_orders,json=succeedOrders,proto3" json:"succeed_orders,omitempty"`
+	CanceledOrders    int64                  `protobuf:"varint,2,opt,name=canceled_orders,json=canceledOrders,proto3" json:"canceled_orders,omitempty"`
+	SucceedOrdersSum  float32                `protobuf:"fixed32,3,opt,name=succeed_orders_sum,json=succeedOrdersSum,proto3" json:"succeed_orders_sum,omitempty"`
+	CanceledOrdersSun float32                `protobuf:"fixed32,4,opt,name=canceled_orders_sun,json=canceledOrdersSun,proto3" json:"canceled_orders_sun,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *BankDetailStatistics_Statistics_Month) Reset() {
+	*x = BankDetailStatistics_Statistics_Month{}
+	mi := &file_banking_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BankDetailStatistics_Statistics_Month) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BankDetailStatistics_Statistics_Month) ProtoMessage() {}
+
+func (x *BankDetailStatistics_Statistics_Month) ProtoReflect() protoreflect.Message {
+	mi := &file_banking_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BankDetailStatistics_Statistics_Month.ProtoReflect.Descriptor instead.
+func (*BankDetailStatistics_Statistics_Month) Descriptor() ([]byte, []int) {
+	return file_banking_proto_rawDescGZIP(), []int{1, 0, 1}
+}
+
+func (x *BankDetailStatistics_Statistics_Month) GetSucceedOrders() int64 {
+	if x != nil {
+		return x.SucceedOrders
+	}
+	return 0
+}
+
+func (x *BankDetailStatistics_Statistics_Month) GetCanceledOrders() int64 {
+	if x != nil {
+		return x.CanceledOrders
+	}
+	return 0
+}
+
+func (x *BankDetailStatistics_Statistics_Month) GetSucceedOrdersSum() float32 {
+	if x != nil {
+		return x.SucceedOrdersSum
+	}
+	return 0
+}
+
+func (x *BankDetailStatistics_Statistics_Month) GetCanceledOrdersSun() float32 {
+	if x != nil {
+		return x.CanceledOrdersSun
+	}
+	return 0
+}
+
 var File_banking_proto protoreflect.FileDescriptor
 
 const file_banking_proto_rawDesc = "" +
 	"\n" +
-	"\rbanking.proto\x12\abanking\x1a\x1egoogle/protobuf/duration.proto\"\xc7\x05\n" +
+	"\rbanking.proto\x12\abanking\x1a\x1egoogle/protobuf/duration.proto\"\x97\x01\n" +
+	"\n" +
+	"Pagination\x12!\n" +
+	"\fcurrent_page\x18\x01 \x01(\x03R\vcurrentPage\x12\x1f\n" +
+	"\vtotal_pages\x18\x02 \x01(\x03R\n" +
+	"totalPages\x12\x1f\n" +
+	"\vtotal_items\x18\x03 \x01(\x03R\n" +
+	"totalItems\x12$\n" +
+	"\x0eitems_per_page\x18\x04 \x01(\x03R\fitemsPerPage\"\x9c\x04\n" +
+	"\x14BankDetailStatistics\x124\n" +
+	"\vbank_detail\x18\x01 \x01(\v2\x13.banking.BankDetailR\n" +
+	"bankDetail\x1a\xcd\x03\n" +
+	"\n" +
+	"Statistics\x12#\n" +
+	"\ractive_orders\x18\x01 \x01(\x03R\factiveOrders\x12*\n" +
+	"\x11active_orders_sum\x18\x02 \x01(\x02R\x0factiveOrdersSum\x1a\xb5\x01\n" +
+	"\x05Today\x12%\n" +
+	"\x0esucceed_orders\x18\x01 \x01(\x03R\rsucceedOrders\x12'\n" +
+	"\x0fcanceled_orders\x18\x02 \x01(\x03R\x0ecanceledOrders\x12,\n" +
+	"\x12succeed_orders_sum\x18\x03 \x01(\x02R\x10succeedOrdersSum\x12.\n" +
+	"\x13canceled_orders_sum\x18\x04 \x01(\x02R\x11canceledOrdersSum\x1a\xb5\x01\n" +
+	"\x05Month\x12%\n" +
+	"\x0esucceed_orders\x18\x01 \x01(\x03R\rsucceedOrders\x12'\n" +
+	"\x0fcanceled_orders\x18\x02 \x01(\x03R\x0ecanceledOrders\x12,\n" +
+	"\x12succeed_orders_sum\x18\x03 \x01(\x02R\x10succeedOrdersSum\x12.\n" +
+	"\x13canceled_orders_sun\x18\x04 \x01(\x02R\x11canceledOrdersSun\"r\n" +
+	")GetBankDetailsStatisticsByTraderIDRequest\x12\x1b\n" +
+	"\ttrader_id\x18\x01 \x01(\tR\btraderId\x12\x12\n" +
+	"\x04page\x18\x02 \x01(\x03R\x04page\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x03R\x05limit\"\xb6\x01\n" +
+	"*GetBankDetailsStatisticsByTraderIDResponse\x12S\n" +
+	"\x16bank_detail_statistics\x18\x01 \x03(\v2\x1d.banking.BankDetailStatisticsR\x14bankDetailStatistics\x123\n" +
+	"\n" +
+	"pagination\x18\x02 \x01(\v2\x13.banking.PaginationR\n" +
+	"pagination\"\xc7\x05\n" +
 	"\n" +
 	"BankDetail\x12$\n" +
 	"\x0ebank_detail_id\x18\x01 \x01(\tR\fbankDetailId\x12\x1b\n" +
@@ -1574,7 +2020,7 @@ const file_banking_proto_rawDesc = "" +
 	"\x12GetBankByIDRequest\x12\x17\n" +
 	"\abank_id\x18\x01 \x01(\tR\x06bankId\"8\n" +
 	"\x13GetBankByIDResponse\x12!\n" +
-	"\x04bank\x18\x01 \x01(\v2\r.banking.BankR\x04bank2\xe3\a\n" +
+	"\x04bank\x18\x01 \x01(\v2\r.banking.BankR\x04bank2\xf3\b\n" +
 	"\x0eBankingService\x12W\n" +
 	"\x10CreateBankDetail\x12 .banking.CreateBankDetailRequest\x1a!.banking.CreateBankDetailResponse\x12Z\n" +
 	"\x11GetBankDetailByID\x12!.banking.GetBankDetailByIDRequest\x1a\".banking.GetBankDetailByIDResponse\x12W\n" +
@@ -1587,7 +2033,8 @@ const file_banking_proto_rawDesc = "" +
 	"\rGetBankByName\x12\x1d.banking.GetBankByNameRequest\x1a\x1e.banking.GetBankByNameResponse\x12Z\n" +
 	"\x11GetBanksByCountry\x12!.banking.GetBanksByCountryRequest\x1a\".banking.GetBanksByCountryResponse\x12Q\n" +
 	"\x0eDeleteBankByID\x12\x1e.banking.DeleteBankByIDRequest\x1a\x1f.banking.DeleteBankByIDResponse\x12H\n" +
-	"\vGetBankByID\x12\x1b.banking.GetBankByIDRequest\x1a\x1c.banking.GetBankByIDResponseB7Z5github.com/LavaJover/shvark-banking-service;bankingpbb\x06proto3"
+	"\vGetBankByID\x12\x1b.banking.GetBankByIDRequest\x1a\x1c.banking.GetBankByIDResponse\x12\x8d\x01\n" +
+	"\"GetBankDetailsStatisticsByTraderID\x122.banking.GetBankDetailsStatisticsByTraderIDRequest\x1a3.banking.GetBankDetailsStatisticsByTraderIDResponseB7Z5github.com/LavaJover/shvark-banking-service;bankingpbb\x06proto3"
 
 var (
 	file_banking_proto_rawDescOnce sync.Once
@@ -1601,72 +2048,84 @@ func file_banking_proto_rawDescGZIP() []byte {
 	return file_banking_proto_rawDescData
 }
 
-var file_banking_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_banking_proto_msgTypes = make([]protoimpl.MessageInfo, 31)
 var file_banking_proto_goTypes = []any{
-	(*BankDetail)(nil),                       // 0: banking.BankDetail
-	(*CreateBankDetailRequest)(nil),          // 1: banking.CreateBankDetailRequest
-	(*CreateBankDetailResponse)(nil),         // 2: banking.CreateBankDetailResponse
-	(*GetBankDetailByIDRequest)(nil),         // 3: banking.GetBankDetailByIDRequest
-	(*GetBankDetailByIDResponse)(nil),        // 4: banking.GetBankDetailByIDResponse
-	(*UpdateBankDetailRequest)(nil),          // 5: banking.UpdateBankDetailRequest
-	(*UpdateBankDetailResponse)(nil),         // 6: banking.UpdateBankDetailResponse
-	(*DeleteBankDetailRequest)(nil),          // 7: banking.DeleteBankDetailRequest
-	(*DeleteBankDetailResponse)(nil),         // 8: banking.DeleteBankDetailResponse
-	(*GetBankDetailsByTraderIDRequest)(nil),  // 9: banking.GetBankDetailsByTraderIDRequest
-	(*GetBankDetailsByTraderIDResponse)(nil), // 10: banking.GetBankDetailsByTraderIDResponse
-	(*GetEligibleBankDetailsRequest)(nil),    // 11: banking.GetEligibleBankDetailsRequest
-	(*GetEligibleBankDetailsResponse)(nil),   // 12: banking.GetEligibleBankDetailsResponse
-	(*CreateBankRequest)(nil),                // 13: banking.CreateBankRequest
-	(*CreateBankResponse)(nil),               // 14: banking.CreateBankResponse
-	(*GetBankByNameRequest)(nil),             // 15: banking.GetBankByNameRequest
-	(*Bank)(nil),                             // 16: banking.Bank
-	(*GetBankByNameResponse)(nil),            // 17: banking.GetBankByNameResponse
-	(*GetBanksByCountryRequest)(nil),         // 18: banking.GetBanksByCountryRequest
-	(*GetBanksByCountryResponse)(nil),        // 19: banking.GetBanksByCountryResponse
-	(*DeleteBankByIDRequest)(nil),            // 20: banking.DeleteBankByIDRequest
-	(*DeleteBankByIDResponse)(nil),           // 21: banking.DeleteBankByIDResponse
-	(*GetBankByIDRequest)(nil),               // 22: banking.GetBankByIDRequest
-	(*GetBankByIDResponse)(nil),              // 23: banking.GetBankByIDResponse
-	(*durationpb.Duration)(nil),              // 24: google.protobuf.Duration
+	(*Pagination)(nil),                                 // 0: banking.Pagination
+	(*BankDetailStatistics)(nil),                       // 1: banking.BankDetailStatistics
+	(*GetBankDetailsStatisticsByTraderIDRequest)(nil),  // 2: banking.GetBankDetailsStatisticsByTraderIDRequest
+	(*GetBankDetailsStatisticsByTraderIDResponse)(nil), // 3: banking.GetBankDetailsStatisticsByTraderIDResponse
+	(*BankDetail)(nil),                                 // 4: banking.BankDetail
+	(*CreateBankDetailRequest)(nil),                    // 5: banking.CreateBankDetailRequest
+	(*CreateBankDetailResponse)(nil),                   // 6: banking.CreateBankDetailResponse
+	(*GetBankDetailByIDRequest)(nil),                   // 7: banking.GetBankDetailByIDRequest
+	(*GetBankDetailByIDResponse)(nil),                  // 8: banking.GetBankDetailByIDResponse
+	(*UpdateBankDetailRequest)(nil),                    // 9: banking.UpdateBankDetailRequest
+	(*UpdateBankDetailResponse)(nil),                   // 10: banking.UpdateBankDetailResponse
+	(*DeleteBankDetailRequest)(nil),                    // 11: banking.DeleteBankDetailRequest
+	(*DeleteBankDetailResponse)(nil),                   // 12: banking.DeleteBankDetailResponse
+	(*GetBankDetailsByTraderIDRequest)(nil),            // 13: banking.GetBankDetailsByTraderIDRequest
+	(*GetBankDetailsByTraderIDResponse)(nil),           // 14: banking.GetBankDetailsByTraderIDResponse
+	(*GetEligibleBankDetailsRequest)(nil),              // 15: banking.GetEligibleBankDetailsRequest
+	(*GetEligibleBankDetailsResponse)(nil),             // 16: banking.GetEligibleBankDetailsResponse
+	(*CreateBankRequest)(nil),                          // 17: banking.CreateBankRequest
+	(*CreateBankResponse)(nil),                         // 18: banking.CreateBankResponse
+	(*GetBankByNameRequest)(nil),                       // 19: banking.GetBankByNameRequest
+	(*Bank)(nil),                                       // 20: banking.Bank
+	(*GetBankByNameResponse)(nil),                      // 21: banking.GetBankByNameResponse
+	(*GetBanksByCountryRequest)(nil),                   // 22: banking.GetBanksByCountryRequest
+	(*GetBanksByCountryResponse)(nil),                  // 23: banking.GetBanksByCountryResponse
+	(*DeleteBankByIDRequest)(nil),                      // 24: banking.DeleteBankByIDRequest
+	(*DeleteBankByIDResponse)(nil),                     // 25: banking.DeleteBankByIDResponse
+	(*GetBankByIDRequest)(nil),                         // 26: banking.GetBankByIDRequest
+	(*GetBankByIDResponse)(nil),                        // 27: banking.GetBankByIDResponse
+	(*BankDetailStatistics_Statistics)(nil),            // 28: banking.BankDetailStatistics.Statistics
+	(*BankDetailStatistics_Statistics_Today)(nil),      // 29: banking.BankDetailStatistics.Statistics.Today
+	(*BankDetailStatistics_Statistics_Month)(nil),      // 30: banking.BankDetailStatistics.Statistics.Month
+	(*durationpb.Duration)(nil),                        // 31: google.protobuf.Duration
 }
 var file_banking_proto_depIdxs = []int32{
-	24, // 0: banking.BankDetail.delay:type_name -> google.protobuf.Duration
-	24, // 1: banking.CreateBankDetailRequest.delay:type_name -> google.protobuf.Duration
-	0,  // 2: banking.GetBankDetailByIDResponse.bank_detail:type_name -> banking.BankDetail
-	0,  // 3: banking.UpdateBankDetailRequest.bank_detail:type_name -> banking.BankDetail
-	0,  // 4: banking.DeleteBankDetailResponse.bank_detail:type_name -> banking.BankDetail
-	0,  // 5: banking.GetBankDetailsByTraderIDResponse.bank_details:type_name -> banking.BankDetail
-	0,  // 6: banking.GetEligibleBankDetailsResponse.bank_details:type_name -> banking.BankDetail
-	16, // 7: banking.GetBankByNameResponse.bank:type_name -> banking.Bank
-	16, // 8: banking.GetBanksByCountryResponse.banks:type_name -> banking.Bank
-	16, // 9: banking.GetBankByIDResponse.bank:type_name -> banking.Bank
-	1,  // 10: banking.BankingService.CreateBankDetail:input_type -> banking.CreateBankDetailRequest
-	3,  // 11: banking.BankingService.GetBankDetailByID:input_type -> banking.GetBankDetailByIDRequest
-	5,  // 12: banking.BankingService.UpdateBankDetail:input_type -> banking.UpdateBankDetailRequest
-	7,  // 13: banking.BankingService.DeleteBankDetail:input_type -> banking.DeleteBankDetailRequest
-	9,  // 14: banking.BankingService.GetBankDetailsByTraderID:input_type -> banking.GetBankDetailsByTraderIDRequest
-	11, // 15: banking.BankingService.GetEligibleBankDetails:input_type -> banking.GetEligibleBankDetailsRequest
-	13, // 16: banking.BankingService.CreateBank:input_type -> banking.CreateBankRequest
-	15, // 17: banking.BankingService.GetBankByName:input_type -> banking.GetBankByNameRequest
-	18, // 18: banking.BankingService.GetBanksByCountry:input_type -> banking.GetBanksByCountryRequest
-	20, // 19: banking.BankingService.DeleteBankByID:input_type -> banking.DeleteBankByIDRequest
-	22, // 20: banking.BankingService.GetBankByID:input_type -> banking.GetBankByIDRequest
-	2,  // 21: banking.BankingService.CreateBankDetail:output_type -> banking.CreateBankDetailResponse
-	4,  // 22: banking.BankingService.GetBankDetailByID:output_type -> banking.GetBankDetailByIDResponse
-	6,  // 23: banking.BankingService.UpdateBankDetail:output_type -> banking.UpdateBankDetailResponse
-	8,  // 24: banking.BankingService.DeleteBankDetail:output_type -> banking.DeleteBankDetailResponse
-	10, // 25: banking.BankingService.GetBankDetailsByTraderID:output_type -> banking.GetBankDetailsByTraderIDResponse
-	12, // 26: banking.BankingService.GetEligibleBankDetails:output_type -> banking.GetEligibleBankDetailsResponse
-	14, // 27: banking.BankingService.CreateBank:output_type -> banking.CreateBankResponse
-	17, // 28: banking.BankingService.GetBankByName:output_type -> banking.GetBankByNameResponse
-	19, // 29: banking.BankingService.GetBanksByCountry:output_type -> banking.GetBanksByCountryResponse
-	21, // 30: banking.BankingService.DeleteBankByID:output_type -> banking.DeleteBankByIDResponse
-	23, // 31: banking.BankingService.GetBankByID:output_type -> banking.GetBankByIDResponse
-	21, // [21:32] is the sub-list for method output_type
-	10, // [10:21] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	4,  // 0: banking.BankDetailStatistics.bank_detail:type_name -> banking.BankDetail
+	1,  // 1: banking.GetBankDetailsStatisticsByTraderIDResponse.bank_detail_statistics:type_name -> banking.BankDetailStatistics
+	0,  // 2: banking.GetBankDetailsStatisticsByTraderIDResponse.pagination:type_name -> banking.Pagination
+	31, // 3: banking.BankDetail.delay:type_name -> google.protobuf.Duration
+	31, // 4: banking.CreateBankDetailRequest.delay:type_name -> google.protobuf.Duration
+	4,  // 5: banking.GetBankDetailByIDResponse.bank_detail:type_name -> banking.BankDetail
+	4,  // 6: banking.UpdateBankDetailRequest.bank_detail:type_name -> banking.BankDetail
+	4,  // 7: banking.DeleteBankDetailResponse.bank_detail:type_name -> banking.BankDetail
+	4,  // 8: banking.GetBankDetailsByTraderIDResponse.bank_details:type_name -> banking.BankDetail
+	4,  // 9: banking.GetEligibleBankDetailsResponse.bank_details:type_name -> banking.BankDetail
+	20, // 10: banking.GetBankByNameResponse.bank:type_name -> banking.Bank
+	20, // 11: banking.GetBanksByCountryResponse.banks:type_name -> banking.Bank
+	20, // 12: banking.GetBankByIDResponse.bank:type_name -> banking.Bank
+	5,  // 13: banking.BankingService.CreateBankDetail:input_type -> banking.CreateBankDetailRequest
+	7,  // 14: banking.BankingService.GetBankDetailByID:input_type -> banking.GetBankDetailByIDRequest
+	9,  // 15: banking.BankingService.UpdateBankDetail:input_type -> banking.UpdateBankDetailRequest
+	11, // 16: banking.BankingService.DeleteBankDetail:input_type -> banking.DeleteBankDetailRequest
+	13, // 17: banking.BankingService.GetBankDetailsByTraderID:input_type -> banking.GetBankDetailsByTraderIDRequest
+	15, // 18: banking.BankingService.GetEligibleBankDetails:input_type -> banking.GetEligibleBankDetailsRequest
+	17, // 19: banking.BankingService.CreateBank:input_type -> banking.CreateBankRequest
+	19, // 20: banking.BankingService.GetBankByName:input_type -> banking.GetBankByNameRequest
+	22, // 21: banking.BankingService.GetBanksByCountry:input_type -> banking.GetBanksByCountryRequest
+	24, // 22: banking.BankingService.DeleteBankByID:input_type -> banking.DeleteBankByIDRequest
+	26, // 23: banking.BankingService.GetBankByID:input_type -> banking.GetBankByIDRequest
+	2,  // 24: banking.BankingService.GetBankDetailsStatisticsByTraderID:input_type -> banking.GetBankDetailsStatisticsByTraderIDRequest
+	6,  // 25: banking.BankingService.CreateBankDetail:output_type -> banking.CreateBankDetailResponse
+	8,  // 26: banking.BankingService.GetBankDetailByID:output_type -> banking.GetBankDetailByIDResponse
+	10, // 27: banking.BankingService.UpdateBankDetail:output_type -> banking.UpdateBankDetailResponse
+	12, // 28: banking.BankingService.DeleteBankDetail:output_type -> banking.DeleteBankDetailResponse
+	14, // 29: banking.BankingService.GetBankDetailsByTraderID:output_type -> banking.GetBankDetailsByTraderIDResponse
+	16, // 30: banking.BankingService.GetEligibleBankDetails:output_type -> banking.GetEligibleBankDetailsResponse
+	18, // 31: banking.BankingService.CreateBank:output_type -> banking.CreateBankResponse
+	21, // 32: banking.BankingService.GetBankByName:output_type -> banking.GetBankByNameResponse
+	23, // 33: banking.BankingService.GetBanksByCountry:output_type -> banking.GetBanksByCountryResponse
+	25, // 34: banking.BankingService.DeleteBankByID:output_type -> banking.DeleteBankByIDResponse
+	27, // 35: banking.BankingService.GetBankByID:output_type -> banking.GetBankByIDResponse
+	3,  // 36: banking.BankingService.GetBankDetailsStatisticsByTraderID:output_type -> banking.GetBankDetailsStatisticsByTraderIDResponse
+	25, // [25:37] is the sub-list for method output_type
+	13, // [13:25] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_banking_proto_init() }
@@ -1680,7 +2139,7 @@ func file_banking_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_banking_proto_rawDesc), len(file_banking_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   24,
+			NumMessages:   31,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

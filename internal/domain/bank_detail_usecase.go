@@ -7,4 +7,6 @@ type BankDetailUsecase interface {
 	UpdateBankDetail(bankDetail *BankDetail) error
 	GetBankDetailsByTraderID(traderID string) ([]*BankDetail, error)
 	GetEligibleBankDetails(query *BankDetailQuery) ([]*BankDetail, error)
+
+	// GetBankDetailsStatisticsByTraderID(traderID string, page, limit int64) ([]*BankDetailStatistics, error)
 }

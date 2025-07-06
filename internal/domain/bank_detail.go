@@ -31,3 +31,29 @@ type BankDetailQuery struct {
 	PaymentSystem 	string
 	Country 		string
 }
+
+type Statistics struct {
+	ActiveOrders 	int64
+	ActiveOrdersSum int64
+	TodayStatistics TodayStatistics
+	MonthStatistics MonthStatistics
+}
+
+type TodayStatistics struct {
+	SucceedOrders 	 	int64
+	CanceledOrders   	int64
+	SucceedOrdersSum 	float64
+	CanceledOrdersSum 	float64
+}
+
+type MonthStatistics struct {
+	SucceedOrders 	 	int64
+	CanceledOrders   	int64
+	SucceedOrdersSum 	float64
+	CanceledOrdersSum 	float64
+}
+
+type BankDetailStatistics struct {
+	BankDetail BankDetail
+	Statistics Statistics
+}

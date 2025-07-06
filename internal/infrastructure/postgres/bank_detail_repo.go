@@ -234,3 +234,7 @@ func (r *DefaultBankDetailRepository) GetEligibleBankDetails(query *domain.BankD
 
 	return bankDetails, nil
 }
+
+// func (r *DefaultBankDetailRepository) GetBankDetailsStatisticsByTraderID(traderID string, page, limit int64) ([]*domain.BankDetailStatistics, error) {
+
+// }

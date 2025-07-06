@@ -35,3 +35,11 @@ func (uc *DefaultBankDetailUsecase) GetBankDetailsByTraderID(traderID string) ([
 func (uc *DefaultBankDetailUsecase) GetEligibleBankDetails(query *domain.BankDetailQuery) ([]*domain.BankDetail, error) {
 	return uc.repo.GetEligibleBankDetails(query)
 }
+
+// func (uc *DefaultBankDetailUsecase) GetBankDetailsStatisticsByTraderID(traderID string, page, limit int64) ([]*domain.BankDetailStatistics, error) {
+// 	bankDetails, err := uc.GetBankDetailsByTraderID(traderID)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// }

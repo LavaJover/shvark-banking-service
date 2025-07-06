@@ -315,3 +315,7 @@ func (h *BankingHandler) GetBanksByCountry(ctx context.Context, r *bankingpb.Get
 		Banks: respBanks,
 	}, nil
 }
+
+// func (h *BankingHandler) GetBankDetailsStatisticsByTraderID(ctx context.Context, r *bankingpb.GetBankDetailsStatisticsByTraderIDRequest) (*bankingpb.GetBankDetailsStatisticsByTraderIDResponse, error) {
+// 	traderID, page, limit := r.TraderId, r.Page, r.Limit
+// }
